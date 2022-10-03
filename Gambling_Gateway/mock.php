@@ -1,3 +1,8 @@
+<?php
+session_start();
+include ('connection.php');
+global $conn;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +12,5 @@
 </head>
 <body>
 <h1>Gambling Gateway</h1>
-<?php ?>
 </body>
 </html>
