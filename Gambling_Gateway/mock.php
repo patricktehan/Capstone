@@ -46,7 +46,7 @@ $rush_yard_defense_2 = '';
 $rush_yard_offense_2 = '';
 
 
-$sql = mysqli_select_db('2021NFL_stats',$conn);
+//$sql = mysqli_select_db('2021NFL_stats',$conn);
 
 ?>
 <!DOCTYPE html>
