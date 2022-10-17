@@ -47,6 +47,7 @@ $rush_yard_offense_2 = '';
 
 
 //$sql = mysqli_select_db('2021NFL_stats',$conn);
+$query = $conn->query("SELECT * FROM 2021NFL_stats");
 
 ?>
 <!DOCTYPE html>
@@ -63,17 +64,67 @@ $rush_yard_offense_2 = '';
     <main>
         <div class="pick1">
             <table >
-                <th>team 1</th>
+                <th>
+                    <form method="POST" action="">
+                    <select name="team1">
+                        <?php
+                        while($rows = $query->fetch_assoc()){
+                            $team_name = $rows['Team_name'];
+                            echo "<option value = '$team_name'>$team_name</option>";
+                        }
+                        ?>
+
+                        <input type="submit" name="submit" value="submit">
+                    </select>
+                    </form>
+                    <br>
+
+                    <?php
+                    $selection_team1 = $_POST['team1'];
+                    echo $selection_team1;
+
+                    $team_query = $conn->query("SELECT * FROM 2021NFL_stats where Team_name = '$selection_team1'");
+                    while ($row = mysqli_fetch_array($team_query)){
+                        $division = $row['Division'];
+                        $division_score = $row['Division_score'];
+                        $head_coach_ranking = $row['Head_coach_rating'];
+                        $offense_ranting = $row['offense_rating'];
+                        $defense_ranting = $row['defense_rating'];
+                        $QB_ranting = $row['QB_rating'];
+                        $record_ats_away = $row['record_ATS_away'];
+                        $record_ats_away_fav = $row['record_ATS_away_fav'];
+                        $ats_home = $row['ats_home'];
+                        $ats_home_underdog = $row['ats_home_underdog'];
+                        $ats_away_underdog = $row['ats_away_underdog'];
+                        $ats_home_fav = $row['ats_home_fav'];
+                        $third_down_offense = $row['3rd_down_offense'];
+                        $third_down_defense = $row['3rd_down_defense'];
+                        $pass_yard_offense = $row['pass_yard_offense'];
+                        $pass_yard_defense = $row['pass_yard_defense'];
+                        $rush_yard_defense = $row['rush_yard_defense'];
+                        $rush_yard_offense = $row['rush_yard_offense'];
+                    }
+                    ?>
+
+                </th>
             </table>
             <br>
         </div>
 
         <div class="pick2">
             <table>
-                <th>team 2</th>
+                <th>
+                    <select name="team2">
+                        <?php
+                        while($rows = $query->fetch_assoc()){
+                            $team_name_2 = $rows['Team_name'];
+                            echo "<option value = '$team_name'>$team_name</option>";
+                        }
+                        ?>
+                    </select>
+                </th>
             </table>
         </div>
-
         <div class="bet">
             <table>
                 <tr>
@@ -90,16 +141,29 @@ $rush_yard_offense_2 = '';
             </table>
         </div>
         <div class="stat_description">
-            <p>Stat1</p>
-            <p>Stat1</p>
-            <p>Stat1</p>
-            <p>Stat1</p>
-            <p>Stat1</p>
+            <p>Division</p>
+            <p>Division Score</p>
+            <p>Head Coach Rating (1-5)</p>
+            <p>Offensive Rating (1-5)</p>
+            <p>Defensive Rating (1-5)</p>
+            <p>Quarterback Rating (1-5)</p>
+            <p>Record Against the Spread (Away)</p>
+            <p>Record Against the Spread (Away Favorite)</p>
+            <p>Record Against the Spread (Home)</p>
+            <p>Record Against the Spread (Home Underdog)</p>
+            <p>Record Against the Spread (Away Underdog)</p>
+            <p>Record Against the Spread (Home Favorite)</p>
+            <p>Third Down Conversion Percentage (Offense)</p>
+            <p>Third Down Conversion Percentage (Defense)</p>
+            <p>Passing Yards (Offense)</p>
+            <p>Passing Yards Allowed (Defense)</p>
+            <p>Rushing Yards Allowed (Defense)</p>
+            <p>Rushing Yards (Offense)</p>
         </div>
         <div class="team1">
             <table>
                 <tr>
-                    <td> <?php echo $division ?> <p>The Eagles average 110 rushing yards per game.</p></td>
+                    <td> <?php echo $division ?></td>
                 </tr>
 
                 <tr>
