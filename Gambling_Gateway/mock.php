@@ -79,6 +79,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                     </form>
                     <br>
                     <br>
+                    <br>
                     <?php
                     $selection_team1 = $_GET['team1'];
                     echo $selection_team1;
@@ -103,6 +104,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                             <input type="submit" name="submit2" value="submit">
                         </select>
                     </form>
+                    <br>
                     <br>
                     <br>
                     <?php
