@@ -45,10 +45,10 @@ $pass_yard_defense_2 = '';
 $rush_yard_defense_2 = '';
 $rush_yard_offense_2 = '';
 
-
-//$sql = mysqli_select_db('2021NFL_stats',$conn);
+//query 1 for team one query2 for team 2 information
 $query = $conn->query("SELECT * FROM 2021NFL_stats");
 $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,6 +69,8 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                     <select name="team1">
                         <option value="Choose">Team #1</option>
                         <?php
+
+                        //creation of the dropdown by gathering every team name from database
                         while($rows = $query->fetch_assoc()){
                             $team_name = $rows['Team_name'];
                             echo "<option value = '$team_name'>$team_name</option>";
@@ -81,6 +83,8 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                     <br>
                     <br>
                     <?php
+
+                    //sets the selection from the dropdown to a variable
                     $selection_team1 = $_GET['team1'];
                     echo $selection_team1;
                     ?>
@@ -116,6 +120,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
 
             <?php
 
+            //gathering every statistic from the database based on the team1 selection and setting each value to a variable
             $team_query = $conn->query("SELECT * FROM 2021NFL_stats where Team_name = '$selection_team1'");
             while ($row = mysqli_fetch_array($team_query)){
                 $division = $row['Division'];
@@ -137,6 +142,8 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 $rush_yard_defense = $row['rush_yard_defense'];
                 $rush_yard_offense = $row['rush_yard_offense'];
             }
+
+            //gathering every statistic from the database based on the team2 selection and setting each value to a variable
             $team_query_2 = $conn->query("SELECT * FROM 2021NFL_stats where Team_name = '$selection_team2'");
             while ($row = mysqli_fetch_array($team_query_2)){
                 $division_2 = $row['Division'];
@@ -158,6 +165,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 $rush_yard_defense_2 = $row['rush_yard_defense'];
                 $rush_yard_offense_2 = $row['rush_yard_offense'];
             }
+
             ?>
 
         </div>
