@@ -58,12 +58,13 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
     <link rel="stylesheet" href="gambling_gateway.css">
 </head>
 <body>
-<h1><img class="logo" src="img/gamblinggatewaylogo.png" alt="Gambling Gateway"><img class="logo" src="img/nfl.jpg" alt="NFL"></h1>
+<h1><img src="img/gamblinggatewaylogo.png" alt="Gambling Gateway" height="200px" width ="250px"></h1>
 <div class="grid">
     <main>
+        <p><img class ="nfl_logo" src="img/nfl.jpg" alt="NFL" ></p>
         <div class="pick1">
             <table >
-                <th>
+                <tr>
                     <form method="GET" action="">
                     <select name="team1">
                         <option value="Choose">Team #1</option>
@@ -77,19 +78,19 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                     </select>
                     </form>
                     <br>
-
+                    <br>
                     <?php
                     $selection_team1 = $_GET['team1'];
                     echo $selection_team1;
                     ?>
 
-                </th>
+                </tr>
             </table>
             <br>
         </div>
         <div class="pick2">
             <table>
-                <th>
+                <tr>
                     <form method="POST" action="">
                         <select name="team2">
                             <option value="Choose">Team #2</option>
@@ -103,11 +104,12 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                         </select>
                     </form>
                     <br>
+                    <br>
                     <?php
                     $selection_team2 = $_POST['team2'];
                     echo $selection_team2;
                     ?>
-                </th>
+                </tr>
             </table>
 
             <?php
@@ -310,11 +312,10 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 </tr>
             </table>
         </div>
-
     </main>
 </div>
 <footer>
-    <p>graph here</p>
+
 </footer>
 
 </body>
