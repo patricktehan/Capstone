@@ -58,8 +58,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
     <link rel="stylesheet" href="gambling_gateway.css">
 </head>
 <body>
-<img>
-<h1>Gambling Gateway</h1>
+<h1><img class="logo" src="img/gamblinggatewaylogo.png" alt="Gambling Gateway"><img class="logo" src="img/nfl.jpg" alt="NFL"></h1>
 <div class="grid">
     <main>
         <div class="pick1">
@@ -67,7 +66,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 <th>
                     <form method="GET" action="">
                     <select name="team1">
-                        <option value="Choose">Choose a team!</option>
+                        <option value="Choose">Team #1</option>
                         <?php
                         while($rows = $query->fetch_assoc()){
                             $team_name = $rows['Team_name'];
@@ -93,7 +92,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 <th>
                     <form method="POST" action="">
                         <select name="team2">
-                            <option value="Choose">Choose a team!</option>
+                            <option value="Choose">Team #2</option>
                             <?php
                             while($rows = $query2->fetch_assoc()){
                                 $team_name_2 = $rows['Team_name'];
