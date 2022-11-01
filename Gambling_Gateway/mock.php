@@ -54,6 +54,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="teamcomparision.js"></script>
     <title>Gambling Gateway</title>
     <link rel="stylesheet" href="gambling_gateway.css">
 </head>
@@ -76,7 +77,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                             echo "<option value = '$team_name'>$team_name</option>";
                         }
                         ?>
-                        <input type="submit" name="submit" value="submit">
+                        <input type="submit" name="submit" value="submit" onclick="setBackgroundColorComparison()">
                     </select>
                     </form>
                     <br>
@@ -105,7 +106,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                                 echo "<option value = '$team_name_2'>$team_name_2</option>";
                             }
                             ?>
-                            <input type="submit" name="submit2" value="submit">
+                            <input type="submit" name="submit2" value="submit" onclick="setBackgroundColorComparison()">
                         </select>
                     </form>
                     <br>
@@ -206,141 +207,127 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
         </div>
         <div class="team1">
             <table>
-                <tr id ="division">
+                <tr>
                     <td> <?php echo $division ?></td>
                 </tr>
 
                 <tr>
-                    <td> <?php echo $division_score; ?></td>
+                    <td id="division1"> <?php echo $division_score; ?></td>
                 </tr>
                 <tr>
-                    <td> <?php echo $head_coach_ranking ?> </td>
+                    <td id="head_coach_ranking1"> <?php echo $head_coach_ranking ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $offense_ranting ?> </td>
+                    <td id="offense_rating1"> <?php echo $offense_ranting ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $defense_ranting ?> </td>
+                    <td id="defense_rating1"> <?php echo $defense_ranting ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $QB_ranting ?> </td>
+                    <td id="QB_rating1"> <?php echo $QB_ranting ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $record_ats_away ?> </td>
+                    <td id="record_ats_away1"> <?php echo $record_ats_away ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $record_ats_away_fav ?> </td>
+                    <td id="record_ats_away_fav1"> <?php echo $record_ats_away_fav ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $ats_home ?> </td>
+                    <td id="ats_home1"> <?php echo $ats_home ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $ats_home_underdog ?> </td>
+                    <td id="ats_home_underdog1"> <?php echo $ats_home_underdog ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $ats_away_underdog ?> </td>
+                    <td id="ats_away_underdog1"> <?php echo $ats_away_underdog ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $ats_home_fav ?> </td>
+                    <td id="ats_home_fav1"> <?php echo $ats_home_fav ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $third_down_offense ?> </td>
+                    <td id="third_down_offense1"> <?php echo $third_down_offense ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $third_down_defense ?> </td>
+                    <td id="third_down_defense1"> <?php echo $third_down_defense ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $pass_yard_offense ?> </td>
+                    <td id="pass_yard_offense1"> <?php echo $pass_yard_offense ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $pass_yard_defense ?> </td>
+                    <td id="pass_yard_defense1"> <?php echo $pass_yard_defense ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $rush_yard_defense ?> </td>
+                    <td id="rush_yard_defense1"> <?php echo $rush_yard_defense ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $rush_yard_offense ?> </td>
+                    <td id="rush_yard_offense1"> <?php echo $rush_yard_offense ?> </td>
                 </tr>
             </table>
         </div>
 
         <div class="team2">
             <table>
-                <tr id="division2">
-                    <td> <?php echo $division_2 ?></td>
+                <tr>
+                    <td > <?php echo $division_2 ?></td>
                 </tr>
                 <tr>
-                    <td> <?php echo $division_score_2 ?> </td>
+                    <td id="division2"> <?php echo $division_score_2 ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $head_coach_ranking_2 ?> </td>
+                    <td id="head_coach_ranking2"> <?php echo $head_coach_ranking_2 ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $offense_ranting_2 ?> </td>
+                    <td id="offense_rating2"> <?php echo $offense_ranting_2 ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $defense_ranting_2 ?> </td>
+                    <td id="defense_rating2"> <?php echo $defense_ranting_2 ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $QB_ranting_2 ?> </td>
+                    <td id="QB_rating2"> <?php echo $QB_ranting_2 ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $record_ats_away_2 ?> </td>
+                    <td id="record_ats_away2"> <?php echo $record_ats_away_2 ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $record_ats_away_fav_2 ?> </td>
+                    <td id="record_ats_away_fav2"> <?php echo $record_ats_away_fav_2 ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $ats_home_2 ?> </td>
+                    <td id="ats_home2"> <?php echo $ats_home_2 ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $ats_home_underdog_2 ?> </td>
+                    <td id="ats_home_underdog2"> <?php echo $ats_home_underdog_2 ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $ats_away_underdog_2 ?> </td>
+                    <td id="ats_away_underdog2"> <?php echo $ats_away_underdog_2 ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $ats_home_fav_2 ?> </td>
+                    <td id="ats_home_fav2"> <?php echo $ats_home_fav_2 ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $third_down_offense_2 ?> </td>
+                    <td id="third_down_offense2"> <?php echo $third_down_offense_2 ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $third_down_defense_2  ?> </td>
+                    <td id="third_down_defense2"> <?php echo $third_down_defense_2  ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $pass_yard_offense_2 ?> </td>
+                    <td id="pass_yard_offense2"> <?php echo $pass_yard_offense_2 ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $pass_yard_defense_2 ?> </td>
+                    <td id="pass_yard_defense2"> <?php echo $pass_yard_defense_2 ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $rush_yard_defense_2 ?> </td>
+                    <td id="rush_yard_defense2"> <?php echo $rush_yard_defense_2 ?> </td>
                 </tr>
                 <tr>
-                    <td> <?php echo $rush_yard_offense_2 ?> </td>
+                    <td id="rush_yard_offense2"> <?php echo $rush_yard_offense_2 ?> </td>
                 </tr>
             </table>
         </div>
-        <?php
-        if (isset($selection_team1) && isset($selection_team2)){
-            if ($division_score > $division_score_2) {
-                echo "<tr id='division' style = 'background-color:green;'>";
-                echo "<tr id='division2' style = 'background-color:red;'>";
-            }
 
-//            elseif ($division_score < $division_score_2){
-//                echo "<tr style = 'background-color:red;'>";
-//            }
-//            endif;
-        }
-
-        ?>
     </main>
 </div>
-<footer>
-
-</footer>
-
+<script>
+    onPageLoad();
+</script>
 </body>
 </html>
