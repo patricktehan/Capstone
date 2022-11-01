@@ -206,12 +206,12 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
         </div>
         <div class="team1">
             <table>
-                <tr>
+                <tr id ="division">
                     <td> <?php echo $division ?></td>
                 </tr>
 
                 <tr>
-                    <td> <?php echo $division_score ?> </td>
+                    <td> <?php echo $division_score; ?></td>
                 </tr>
                 <tr>
                     <td> <?php echo $head_coach_ranking ?> </td>
@@ -266,7 +266,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
 
         <div class="team2">
             <table>
-                <tr>
+                <tr id="division2">
                     <td> <?php echo $division_2 ?></td>
                 </tr>
                 <tr>
@@ -322,6 +322,20 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 </tr>
             </table>
         </div>
+        <?php
+        if (isset($selection_team1) && isset($selection_team2)){
+            if ($division_score > $division_score_2) {
+                echo "<tr id='division' style = 'background-color:green;'>";
+                echo "<tr id='division2' style = 'background-color:red;'>";
+            }
+
+//            elseif ($division_score < $division_score_2){
+//                echo "<tr style = 'background-color:red;'>";
+//            }
+//            endif;
+        }
+
+        ?>
     </main>
 </div>
 <footer>
