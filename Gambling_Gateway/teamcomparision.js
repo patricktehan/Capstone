@@ -19,16 +19,23 @@ function onPageLoad(){
 }
 
 function setBackgroundColorComparison(team1,team2){
-    var division1 = document.getElementById(team1);
-    var division2 = document.getElementById(team2);
-    console.log(division1,division1.innerHTML);
+    let division1 = document.getElementById(team1);
+    let division2 = document.getElementById(team2);
+    console.log(division1.innerHTML,division1.innerHTML);
 
-    if (division1.innerHTML > division2.innerHTML){
+    if (division1.innerHTML === division2.innerHTML){
+        division1.style.backgroundColor = "yellow";
+        division1.style.color = "black"
+        division2.style.backgroundColor = "yellow";
+        division2.style.color = "black"
+    }
+    else if (division1.innerHTML > division2.innerHTML){
         division1.style.backgroundColor = "green";
         division2.style.backgroundColor = "red";
     }
-    if (division1.innerHTML < division2.innerHTML){
+    else if (division1.innerHTML < division2.innerHTML){
         division1.style.backgroundColor = "red";
         division2.style.backgroundColor = "green";
     }
 }
+

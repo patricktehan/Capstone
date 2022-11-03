@@ -3,7 +3,7 @@
 include ('connection.php');
 global $conn;
 
-//team 1
+//team 1 statistics
 $team_name = '';
 $division = '';
 $division_score = '';
@@ -24,7 +24,7 @@ $pass_yard_defense = '';
 $rush_yard_defense = '';
 $rush_yard_offense = '';
 
-//team 2 stats
+//team 2 statistics
 $team_name_2 = '';
 $division_2 = '';
 $division_score_2 = '';
@@ -55,6 +55,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
 <head>
     <meta charset="UTF-8">
     <script src="teamcomparision.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Gambling Gateway</title>
     <link rel="stylesheet" href="gambling_gateway.css">
 </head>
@@ -83,13 +84,11 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                     <br>
                     <br>
                     <br>
+<!--                    sets the selection from the dropdown to a variable-->
                     <?php
-
-                    //sets the selection from the dropdown to a variable
                     $selection_team1 = $_GET['team1'];
                     echo $selection_team1;
                     ?>
-
                 </tr>
             </table>
             <br>
@@ -120,7 +119,6 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
             </table>
 
             <?php
-
             //gathering every statistic from the database based on the team1 selection and setting each value to a variable
             $team_query = $conn->query("SELECT * FROM 2021NFL_stats where Team_name = '$selection_team1'");
             while ($row = mysqli_fetch_array($team_query)){
@@ -143,7 +141,6 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 $rush_yard_defense = $row['rush_yard_defense'];
                 $rush_yard_offense = $row['rush_yard_offense'];
             }
-
             //gathering every statistic from the database based on the team2 selection and setting each value to a variable
             $team_query_2 = $conn->query("SELECT * FROM 2021NFL_stats where Team_name = '$selection_team2'");
             while ($row = mysqli_fetch_array($team_query_2)){
@@ -166,7 +163,6 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 $rush_yard_defense_2 = $row['rush_yard_defense'];
                 $rush_yard_offense_2 = $row['rush_yard_offense'];
             }
-
             ?>
 
         </div>
@@ -323,6 +319,52 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 </tr>
             </table>
         </div>
+        <div style="width:700px; height:900px;">
+            <canvas id="yardChart"></canvas>
+        </div>
+            <script>
+
+                let passYardOffense1 = document.getElementById('pass_yard_offense1');
+                let passYardDefense1 = document.getElementById('pass_yard_defense1');
+                let rushYardOffense1 = document.getElementById('rush_yard_offense1');
+                let rushYardDefense1 = document.getElementById('rush_yard_defense1');
+
+                let passYardOffense2 = document.getElementById('pass_yard_offense2');
+                let passYardDefense2 = document.getElementById('pass_yard_defense2');
+                let rushYardOffense2 = document.getElementById('rush_yard_offense2');
+                let rushYardDefense2 = document.getElementById('rush_yard_defense2');
+
+                let labels = ['Passing Yards (Offense)','Passing Yards Allowed (defense)','Rushing Yards (offense)','Rushing Yards Allowed (Defense)']
+                let team1_data = [passYardOffense1.innerHTML,passYardDefense1.innerHTML,rushYardOffense1.innerHTML,rushYardDefense1.innerHTML]
+                let team2_data = [passYardOffense2.innerHTML,passYardDefense2.innerHTML,rushYardOffense2.innerHTML,rushYardDefense2.innerHTML]
+                const data = {
+                    labels:labels,
+                    datasets: [{
+                        data:team1_data,
+                        backgroundColor:'green',
+                    }]
+                };
+                const config = {
+                    type: 'bar',
+                    data: data
+                    // options: {
+                    //     plugins:{
+                    //         legend:{
+                    //
+                    //         },
+                    //         title{
+                    //             display:true,
+                    //             text:'Yard Comparison'
+                    //         }
+                    //     }
+                    // }
+                };
+                const chart = new Chart(
+                    document.getElementById('yardChart'),
+                    config
+                );
+            </script>
+
 
     </main>
 </div>
