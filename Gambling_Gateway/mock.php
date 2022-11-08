@@ -265,7 +265,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
         <div class="team2">
             <table>
                 <tr>
-                    <td > <?php echo $division_2 ?></td>
+                    <td> <?php echo $division_2 ?> </td>
                 </tr>
                 <tr>
                     <td id="division2"> <?php echo $division_score_2 ?> </td>
@@ -320,7 +320,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 </tr>
             </table>
         </div>
-        <div id="chart" style="width:700px; height:900px;">
+        <div id="chart" >
             <canvas id="yardChart"></canvas>
         </div>
             <script>
@@ -369,5 +369,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
 <script>
     onPageLoad();
 </script>
+<footer>
+</footer>
 </body>
 </html>
