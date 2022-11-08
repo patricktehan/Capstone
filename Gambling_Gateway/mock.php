@@ -64,7 +64,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
 <div class="grid">
     <main>
         <p><img class ="nfl_logo" src="img/nfl.jpg" alt="NFL" ></p>
-        <div class="pick1">
+        <div id= "team1Pick" class="pick1">
             <table >
                 <tr>
                     <form method="GET" action="">
@@ -93,7 +93,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
             </table>
             <br>
         </div>
-        <div class="pick2">
+        <div id="team2Pick" class="pick2">
             <table>
                 <tr>
                     <form method="POST" action="">
@@ -115,9 +115,10 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                     $selection_team2 = $_POST['team2'];
                     echo $selection_team2;
                     ?>
+
                 </tr>
             </table>
-
+        </div>
             <?php
             //gathering every statistic from the database based on the team1 selection and setting each value to a variable
             $team_query = $conn->query("SELECT * FROM 2021NFL_stats where Team_name = '$selection_team1'");
@@ -165,7 +166,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
             }
             ?>
 
-        </div>
+
         <div class="bet">
             <table>
                 <tr>
@@ -319,16 +320,18 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 </tr>
             </table>
         </div>
-        <div style="width:700px; height:900px;">
+        <div id="chart" style="width:700px; height:900px;">
             <canvas id="yardChart"></canvas>
         </div>
             <script>
 
+                let team1Pick = '<?php echo $selection_team1;?>' ;
                 let passYardOffense1 = document.getElementById('pass_yard_offense1');
                 let passYardDefense1 = document.getElementById('pass_yard_defense1');
                 let rushYardOffense1 = document.getElementById('rush_yard_offense1');
                 let rushYardDefense1 = document.getElementById('rush_yard_defense1');
 
+                let team2Pick = '<?php echo $selection_team2;?>';
                 let passYardOffense2 = document.getElementById('pass_yard_offense2');
                 let passYardDefense2 = document.getElementById('pass_yard_defense2');
                 let rushYardOffense2 = document.getElementById('rush_yard_offense2');
@@ -340,24 +343,19 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 const data = {
                     labels:labels,
                     datasets: [{
+                        label: team1Pick,
                         data:team1_data,
                         backgroundColor:'green',
-                    }]
+                    },
+                        {
+                            label:team2Pick,
+                            data:team2_data,
+                            backgroundColor:"red",
+                        }]
                 };
                 const config = {
                     type: 'bar',
                     data: data
-                    // options: {
-                    //     plugins:{
-                    //         legend:{
-                    //
-                    //         },
-                    //         title{
-                    //             display:true,
-                    //             text:'Yard Comparison'
-                    //         }
-                    //     }
-                    // }
                 };
                 const chart = new Chart(
                     document.getElementById('yardChart'),
