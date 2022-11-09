@@ -1,8 +1,9 @@
 <?php
 
 include ('connection.php');
-global $conn;
 
+global $conn;
+session_start();
 //team 1 statistics
 $team_name = '';
 $division = '';
@@ -23,6 +24,23 @@ $pass_yard_offense = '';
 $pass_yard_defense = '';
 $rush_yard_defense = '';
 $rush_yard_offense = '';
+
+//team 1 algorithm stats
+$wins = '';
+$losses = '';
+$games = '';
+$win_per = '';
+$round_1_adj = '';
+$round_1_win_percent = '';
+$round_2_adj = '';
+$round_2_win_percent = '';
+$rank_raw = '';
+$rank_adj_1 = '';
+$rank_adj_2 = '';
+$raw_to_adj_change = '';
+$rank_change_raw_to_adj = '';
+$sos_rank = '';
+
 
 //team 2 statistics
 $team_name_2 = '';
@@ -45,7 +63,23 @@ $pass_yard_defense_2 = '';
 $rush_yard_defense_2 = '';
 $rush_yard_offense_2 = '';
 
-//query 1 for team one query2 for team 2 information
+//team 2 stats for Algorithms
+$wins_2 = '';
+$losses_2= '';
+$games_2 = '';
+$win_per_2 = '';
+$round_1_adj_2 = '';
+$round_1_win_percent_2 = '';
+$round_2_adj_2 = '';
+$round_2_win_percent_2 = '';
+$rank_raw_2 = '';
+$rank_adj_1_2 = '';
+$rank_adj_2_2 = '';
+$raw_to_adj_change_2 = '';
+$rank_change_raw_to_adj_2 = '';
+$sos_rank_2 = '';
+
+//query 1 for team one query2 for team 2 database
 $query = $conn->query("SELECT * FROM 2021NFL_stats");
 $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
 
@@ -163,6 +197,43 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 $pass_yard_defense_2 = $row['pass_yard_defense'];
                 $rush_yard_defense_2 = $row['rush_yard_defense'];
                 $rush_yard_offense_2 = $row['rush_yard_offense'];
+            }
+            // Gathering algorithm data and setting it to usable variables based off team 1 selection
+            $team_algo_query = $conn->query("SELECT * FROM table_alg_test2 where Team = '$selection_team1'");
+            while ($row = mysqli_fetch_array($team_algo_query)) {
+                $wins = $row['Wins'];
+                $losses = $row['Losses'];
+                $games = $row['Games'];
+                $win_per = $row['Win_per'];
+                $round_1_adj = $row['Round_1_ADJ'];
+                $round_1_win_percent = $row['Round_1_Win_per'];
+                $round_2_adj = $row['Round_2_ADJ'];
+                $round_2_win_percent = $row['Round_2_Win_per'];
+                $rank_raw = $row['Rank_Raw'];
+                $rank_adj_1 = $row['Rank_ADJ_1'];
+                $rank_adj_2 = $row['Rank_ADJ_2'];
+                $raw_to_adj_change = $row['Raw_to_ADJ_Change'];
+                $rank_change_raw_to_adj = $row['Rank_Change_Raw_to_ADJ'];
+                $sos_rank = $row['SOS_Rank'];
+            }
+
+            // Gathering algorithm data and setting it to usable variables based off team 2 selection
+            $team_algo_query2 = $conn->query("SELECT * FROM table_alg_test2 where Team = '$selection_team2'");
+            while ($row = mysqli_fetch_array($team_algo_query2)){
+                $wins_2 = $row['Wins'];
+                $losses_2= $row['Losses'];
+                $games_2 = $row['Games'];
+                $win_per_2 = $row['Win_per'];
+                $round_1_adj_2 = $row['Round_1_ADJ'];
+                $round_1_win_percent_2 = $row['Round_1_Win_per'];
+                $round_2_adj_2 = $row['Round_2_ADJ'];
+                $round_2_win_percent_2 =$row['Round_2_Win_per'];
+                $rank_raw_2 = $row['Rank_Raw'];
+                $rank_adj_1_2 = $row['Rank_ADJ_1'];
+                $rank_adj_2_2 = $row['Rank_ADJ_2'];
+                $raw_to_adj_change_2 = $row['Raw_to_ADJ_Change'];
+                $rank_change_raw_to_adj_2 = $row['Rank_Change_Raw_to_ADJ'];
+                $sos_rank_2 = $row['SOS_Rank'];
             }
             ?>
 
@@ -350,7 +421,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                         {
                             label:team2Pick,
                             data:team2_data,
-                            backgroundColor:"red",
+                            backgroundColor:'red',
                         }]
                 };
                 const config = {
@@ -370,6 +441,25 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
     onPageLoad();
 </script>
 <footer>
+
+    <?php
+    echo $selection_team1.' ';
+    echo $wins.' ';
+    echo $losses.' ';
+    echo $games.' ';
+    echo $win_per.' ';
+    echo $round_1_adj.' ';
+    echo $round_1_win_percent.' ';
+    echo $round_2_adj.' ';
+    echo $round_2_win_percent.' ';
+    echo $rank_raw.' ';
+    echo $rank_adj_1.' ';
+    echo $rank_adj_2.' ';
+    echo $raw_to_adj_change.' ';
+    echo $rank_change_raw_to_adj.' ';
+    echo $sos_rank.' ';
+
+    ?>
 </footer>
 </body>
 </html>
