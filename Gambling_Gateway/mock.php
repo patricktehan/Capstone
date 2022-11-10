@@ -103,18 +103,18 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
             <table >
                 <tr>
                     <form method="GET" action="">
-                    <select name="team1">
-                        <option value="Choose">Team #1</option>
-                        <?php
+                        <select name="team1">
+                            <option value="Choose">Team #1</option>
+                            <?php
 
-                        //creation of the dropdown by gathering every team name from database
-                        while($rows = $query->fetch_assoc()){
-                            $team_name = $rows['Team_name'];
-                            echo "<option value = '$team_name'>$team_name</option>";
-                        }
-                        ?>
-                        <input type="submit" name="submit" value="submit" onclick="spread()">
-                    </select>
+                            //creation of the dropdown by gathering every team name from database
+                            while($rows = $query->fetch_assoc()){
+                                $team_name = $rows['Team_name'];
+                                echo "<option value = '$team_name'>$team_name</option>";
+                            }
+                            ?>
+                            <input type="submit" name="submit" value="submit" onclick="spread()">
+                        </select>
                     </form>
                     <br>
                     <br>
@@ -122,11 +122,11 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                         Home team
                         <br>
                         <br>
-<!--                    sets the selection from the dropdown to a variable-->
-                    <?php
-                    $selection_team1 = $_GET['team1'];
-                    echo $selection_team1.'<br>';
-                    ?>
+                        <!--                    sets the selection from the dropdown to a variable-->
+                        <?php
+                        $selection_team1 = $_GET['team1'];
+                        echo $selection_team1.'<br>';
+                        ?>
                     </div>
 
                 </tr>
@@ -154,97 +154,97 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                         Away Team
                         <br>
                         <br>
-                    <?php
-                    $selection_team2 = $_POST['team2'];
-                    echo $selection_team2;
-                    ?>
+                        <?php
+                        $selection_team2 = $_POST['team2'];
+                        echo $selection_team2;
+                        ?>
                     </div>
                 </tr>
             </table>
         </div>
-            <?php
-            //gathering every statistic from the database based on the team1 selection and setting each value to a variable
-            $team_query = $conn->query("SELECT * FROM 2021NFL_stats where Team_name = '$selection_team1'");
-            while ($row = mysqli_fetch_array($team_query)){
-                $division = $row['Division'];
-                $division_score = $row['Division_score'];
-                $head_coach_ranking = $row['Head_coach_rating'];
-                $offense_ranting = $row['offense_rating'];
-                $defense_ranting = $row['defense_rating'];
-                $QB_ranting = $row['QB_rating'];
-                $record_ats_away = $row['record_ATS_away'];
-                $record_ats_away_fav = $row['record_ATS_away_fav'];
-                $ats_home = $row['ats_home'];
-                $ats_home_underdog = $row['ats_home_underdog'];
-                $ats_away_underdog = $row['ats_away_underdog'];
-                $ats_home_fav = $row['ats_home_fav'];
-                $third_down_offense = $row['3rd_down_offense'];
-                $third_down_defense = $row['3rd_down_defense'];
-                $pass_yard_offense = $row['pass_yard_offense'];
-                $pass_yard_defense = $row['pass_yard_defense'];
-                $rush_yard_defense = $row['rush_yard_defense'];
-                $rush_yard_offense = $row['rush_yard_offense'];
-            }
-            //gathering every statistic from the database based on the team2 selection and setting each value to a variable
-            $team_query_2 = $conn->query("SELECT * FROM 2021NFL_stats where Team_name = '$selection_team2'");
-            while ($row = mysqli_fetch_array($team_query_2)){
-                $division_2 = $row['Division'];
-                $division_score_2 = $row['Division_score'];
-                $head_coach_ranking_2 = $row['Head_coach_rating'];
-                $offense_ranting_2 = $row['offense_rating'];
-                $defense_ranting_2 = $row['defense_rating'];
-                $QB_ranting_2 = $row['QB_rating'];
-                $record_ats_away_2 = $row['record_ATS_away'];
-                $record_ats_away_fav_2 = $row['record_ATS_away_fav'];
-                $ats_home_2 = $row['ats_home'];
-                $ats_home_underdog_2 = $row['ats_home_underdog'];
-                $ats_away_underdog_2 = $row['ats_away_underdog'];
-                $ats_home_fav_2 = $row['ats_home_fav'];
-                $third_down_offense_2 = $row['3rd_down_offense'];
-                $third_down_defense_2 = $row['3rd_down_defense'];
-                $pass_yard_offense_2 = $row['pass_yard_offense'];
-                $pass_yard_defense_2 = $row['pass_yard_defense'];
-                $rush_yard_defense_2 = $row['rush_yard_defense'];
-                $rush_yard_offense_2 = $row['rush_yard_offense'];
-            }
-            // Gathering algorithm data and setting it to usable variables based off team 1 selection
-            $team_algo_query = $conn->query("SELECT * FROM table_alg_test2 where Team = '$selection_team1'");
-            while ($row = mysqli_fetch_array($team_algo_query)) {
-                $wins = $row['Wins'];
-                $losses = $row['Losses'];
-                $games = $row['Games'];
-                $win_per = $row['Win_per'];
-                $round_1_adj = $row['Round_1_ADJ'];
-                $round_1_win_percent = $row['Round_1_Win_per'];
-                $round_2_adj = $row['Round_2_ADJ'];
-                $round_2_win_percent = $row['Round_2_Win_per'];
-                $rank_raw = $row['Rank_Raw'];
-                $rank_adj_1 = $row['Rank_ADJ_1'];
-                $rank_adj_2 = $row['Rank_ADJ_2'];
-                $raw_to_adj_change = $row['Raw_to_ADJ_Change'];
-                $rank_change_raw_to_adj = $row['Rank_Change_Raw_to_ADJ'];
-                $sos_rank = $row['SOS_Rank'];
-            }
+        <?php
+        //gathering every statistic from the database based on the team1 selection and setting each value to a variable
+        $team_query = $conn->query("SELECT * FROM 2021NFL_stats where Team_name = '$selection_team1'");
+        while ($row = mysqli_fetch_array($team_query)){
+            $division = $row['Division'];
+            $division_score = $row['Division_score'];
+            $head_coach_ranking = $row['Head_coach_rating'];
+            $offense_ranting = $row['offense_rating'];
+            $defense_ranting = $row['defense_rating'];
+            $QB_ranting = $row['QB_rating'];
+            $record_ats_away = $row['record_ATS_away'];
+            $record_ats_away_fav = $row['record_ATS_away_fav'];
+            $ats_home = $row['ats_home'];
+            $ats_home_underdog = $row['ats_home_underdog'];
+            $ats_away_underdog = $row['ats_away_underdog'];
+            $ats_home_fav = $row['ats_home_fav'];
+            $third_down_offense = $row['3rd_down_offense'];
+            $third_down_defense = $row['3rd_down_defense'];
+            $pass_yard_offense = $row['pass_yard_offense'];
+            $pass_yard_defense = $row['pass_yard_defense'];
+            $rush_yard_defense = $row['rush_yard_defense'];
+            $rush_yard_offense = $row['rush_yard_offense'];
+        }
+        //gathering every statistic from the database based on the team2 selection and setting each value to a variable
+        $team_query_2 = $conn->query("SELECT * FROM 2021NFL_stats where Team_name = '$selection_team2'");
+        while ($row = mysqli_fetch_array($team_query_2)){
+            $division_2 = $row['Division'];
+            $division_score_2 = $row['Division_score'];
+            $head_coach_ranking_2 = $row['Head_coach_rating'];
+            $offense_ranting_2 = $row['offense_rating'];
+            $defense_ranting_2 = $row['defense_rating'];
+            $QB_ranting_2 = $row['QB_rating'];
+            $record_ats_away_2 = $row['record_ATS_away'];
+            $record_ats_away_fav_2 = $row['record_ATS_away_fav'];
+            $ats_home_2 = $row['ats_home'];
+            $ats_home_underdog_2 = $row['ats_home_underdog'];
+            $ats_away_underdog_2 = $row['ats_away_underdog'];
+            $ats_home_fav_2 = $row['ats_home_fav'];
+            $third_down_offense_2 = $row['3rd_down_offense'];
+            $third_down_defense_2 = $row['3rd_down_defense'];
+            $pass_yard_offense_2 = $row['pass_yard_offense'];
+            $pass_yard_defense_2 = $row['pass_yard_defense'];
+            $rush_yard_defense_2 = $row['rush_yard_defense'];
+            $rush_yard_offense_2 = $row['rush_yard_offense'];
+        }
+        // Gathering algorithm data and setting it to usable variables based off team 1 selection
+        $team_algo_query = $conn->query("SELECT * FROM table_alg_test2 where Team = '$selection_team1'");
+        while ($row = mysqli_fetch_array($team_algo_query)) {
+            $wins = $row['Wins'];
+            $losses = $row['Losses'];
+            $games = $row['Games'];
+            $win_per = $row['Win_per'];
+            $round_1_adj = $row['Round_1_ADJ'];
+            $round_1_win_percent = $row['Round_1_Win_per'];
+            $round_2_adj = $row['Round_2_ADJ'];
+            $round_2_win_percent = $row['Round_2_Win_per'];
+            $rank_raw = $row['Rank_Raw'];
+            $rank_adj_1 = $row['Rank_ADJ_1'];
+            $rank_adj_2 = $row['Rank_ADJ_2'];
+            $raw_to_adj_change = $row['Raw_to_ADJ_Change'];
+            $rank_change_raw_to_adj = $row['Rank_Change_Raw_to_ADJ'];
+            $sos_rank = $row['SOS_Rank'];
+        }
 
-            // Gathering algorithm data and setting it to usable variables based off team 2 selection
-            $team_algo_query2 = $conn->query("SELECT * FROM table_alg_test2 where Team = '$selection_team2'");
-            while ($row = mysqli_fetch_array($team_algo_query2)){
-                $wins_2 = $row['Wins'];
-                $losses_2= $row['Losses'];
-                $games_2 = $row['Games'];
-                $win_per_2 = $row['Win_per'];
-                $round_1_adj_2 = $row['Round_1_ADJ'];
-                $round_1_win_percent_2 = $row['Round_1_Win_per'];
-                $round_2_adj_2 = $row['Round_2_ADJ'];
-                $round_2_win_percent_2 =$row['Round_2_Win_per'];
-                $rank_raw_2 = $row['Rank_Raw'];
-                $rank_adj_1_2 = $row['Rank_ADJ_1'];
-                $rank_adj_2_2 = $row['Rank_ADJ_2'];
-                $raw_to_adj_change_2 = $row['Raw_to_ADJ_Change'];
-                $rank_change_raw_to_adj_2 = $row['Rank_Change_Raw_to_ADJ'];
-                $sos_rank_2 = $row['SOS_Rank'];
-            }
-            ?>
+        // Gathering algorithm data and setting it to usable variables based off team 2 selection
+        $team_algo_query2 = $conn->query("SELECT * FROM table_alg_test2 where Team = '$selection_team2'");
+        while ($row = mysqli_fetch_array($team_algo_query2)){
+            $wins_2 = $row['Wins'];
+            $losses_2= $row['Losses'];
+            $games_2 = $row['Games'];
+            $win_per_2 = $row['Win_per'];
+            $round_1_adj_2 = $row['Round_1_ADJ'];
+            $round_1_win_percent_2 = $row['Round_1_Win_per'];
+            $round_2_adj_2 = $row['Round_2_ADJ'];
+            $round_2_win_percent_2 =$row['Round_2_Win_per'];
+            $rank_raw_2 = $row['Rank_Raw'];
+            $rank_adj_1_2 = $row['Rank_ADJ_1'];
+            $rank_adj_2_2 = $row['Rank_ADJ_2'];
+            $raw_to_adj_change_2 = $row['Raw_to_ADJ_Change'];
+            $rank_change_raw_to_adj_2 = $row['Rank_Change_Raw_to_ADJ'];
+            $sos_rank_2 = $row['SOS_Rank'];
+        }
+        ?>
 
 
         <div class="bet">
@@ -411,60 +411,60 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
         <div id="chart" >
             <canvas id="yardChart"></canvas>
         </div>
-            <script>
-                let team1Pick = '<?php echo $selection_team1;?>' ;
-                let passYardOffense1 = document.getElementById('pass_yard_offense1');
-                let passYardDefense1 = document.getElementById('pass_yard_defense1');
-                let rushYardOffense1 = document.getElementById('rush_yard_offense1');
-                let rushYardDefense1 = document.getElementById('rush_yard_defense1');
+        <script>
+            let team1Pick = '<?php echo $selection_team1;?>' ;
+            let passYardOffense1 = document.getElementById('pass_yard_offense1');
+            let passYardDefense1 = document.getElementById('pass_yard_defense1');
+            let rushYardOffense1 = document.getElementById('rush_yard_offense1');
+            let rushYardDefense1 = document.getElementById('rush_yard_defense1');
 
-                let team2Pick = '<?php echo $selection_team2;?>';
-                let passYardOffense2 = document.getElementById('pass_yard_offense2');
-                let passYardDefense2 = document.getElementById('pass_yard_defense2');
-                let rushYardOffense2 = document.getElementById('rush_yard_offense2');
-                let rushYardDefense2 = document.getElementById('rush_yard_defense2');
+            let team2Pick = '<?php echo $selection_team2;?>';
+            let passYardOffense2 = document.getElementById('pass_yard_offense2');
+            let passYardDefense2 = document.getElementById('pass_yard_defense2');
+            let rushYardOffense2 = document.getElementById('rush_yard_offense2');
+            let rushYardDefense2 = document.getElementById('rush_yard_defense2');
 
-                let labels = ['Passing Yards (Offense)','Passing Yards Allowed (defense)','Rushing Yards (offense)','Rushing Yards Allowed (Defense)']
-                let team1_data = [passYardOffense1.innerHTML,passYardDefense1.innerHTML,rushYardOffense1.innerHTML,rushYardDefense1.innerHTML]
-                let team2_data = [passYardOffense2.innerHTML,passYardDefense2.innerHTML,rushYardOffense2.innerHTML,rushYardDefense2.innerHTML]
-                const data = {
-                    labels:labels,
-                    datasets: [{
-                        label: team1Pick,
-                        data:team1_data,
-                        backgroundColor:'green',
-                    },
-                        {
-                            label:team2Pick,
-                            data:team2_data,
-                            backgroundColor:'red',
-                        }]
-                };
-                const config = {
-                    type: 'bar',
-                    data: data
-                };
-                const chart = new Chart(
-                    document.getElementById('yardChart'),
-                    config
-                );
-            </script>
-    <div class="team1_algo_stats">
-        <div id = "wins_1"><?php echo $wins;?></div>
-        <div id = "losses_1"><?php echo $losses;?></div>
-        <div id = "games_1"><?php echo $games;?></div>
-        <div id = "win_per_1"><?php echo $win_per;?></div>
-        <div id = "round_1_adj_1"><?php echo $round_1_adj;?></div>
-        <div id = "round_1_win_percent_1"><?php echo $round_1_win_percent;?></div>
-        <div id = "round_2_adj_1"><?php echo $round_2_adj;?></div>
-        <div id = "round_2_win_percent_1"><?php echo $round_2_win_percent;?></div>
-        <div id = "rank_raw_1"><?php echo $rank_raw;?></div>
-        <div id = "rank_adj_1_1"><?php echo $rank_adj_1;?></div>
-        <div id = "rank_adj_2_1"><?php echo $rank_adj_2;?></div>
-        <div id = "raw_to_adj_change_1"><?php echo $raw_to_adj_change;?></div>
-        <div id = "rank_change_raw_to_adj_1"><?php echo $rank_change_raw_to_adj;?></div>
-        <div id = "sos_rank_1"><?php echo $sos_rank;?></div>
-    </div>
+            let labels = ['Passing Yards (Offense)','Passing Yards Allowed (defense)','Rushing Yards (offense)','Rushing Yards Allowed (Defense)']
+            let team1_data = [passYardOffense1.innerHTML,passYardDefense1.innerHTML,rushYardOffense1.innerHTML,rushYardDefense1.innerHTML]
+            let team2_data = [passYardOffense2.innerHTML,passYardDefense2.innerHTML,rushYardOffense2.innerHTML,rushYardDefense2.innerHTML]
+            const data = {
+                labels:labels,
+                datasets: [{
+                    label: team1Pick,
+                    data:team1_data,
+                    backgroundColor:'green',
+                },
+                    {
+                        label:team2Pick,
+                        data:team2_data,
+                        backgroundColor:'red',
+                    }]
+            };
+            const config = {
+                type: 'bar',
+                data: data
+            };
+            const chart = new Chart(
+                document.getElementById('yardChart'),
+                config
+            );
+        </script>
+        <div class="team1_algo_stats">
+            <div id = "wins_1"><?php echo $wins;?></div>
+            <div id = "losses_1"><?php echo $losses;?></div>
+            <div id = "games_1"><?php echo $games;?></div>
+            <div id = "win_per_1"><?php echo $win_per;?></div>
+            <div id = "round_1_adj_1"><?php echo $round_1_adj;?></div>
+            <div id = "round_1_win_percent_1"><?php echo $round_1_win_percent;?></div>
+            <div id = "round_2_adj_1"><?php echo $round_2_adj;?></div>
+            <div id = "round_2_win_percent_1"><?php echo $round_2_win_percent;?></div>
+            <div id = "rank_raw_1"><?php echo $rank_raw;?></div>
+            <div id = "rank_adj_1_1"><?php echo $rank_adj_1;?></div>
+            <div id = "rank_adj_2_1"><?php echo $rank_adj_2;?></div>
+            <div id = "raw_to_adj_change_1"><?php echo $raw_to_adj_change;?></div>
+            <div id = "rank_change_raw_to_adj_1"><?php echo $rank_change_raw_to_adj;?></div>
+            <div id = "sos_rank_1"><?php echo $sos_rank;?></div>
+        </div>
         <div class="team2_algo_stats">
             <div id = "wins_2"><?php echo $wins_2;?></div>
             <div id = "losses_2"><?php echo $losses_2;?></div>

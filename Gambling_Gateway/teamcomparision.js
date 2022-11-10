@@ -61,7 +61,7 @@ function spread(team){
 
     }
     else if (selection.innerHTML === team2.innerHTML){
-        start_spread = 3;
+        start_spread = +3;
 
     }
     else{
