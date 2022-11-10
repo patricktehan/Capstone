@@ -407,6 +407,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 </tr>
             </table>
         </div>
+
         <div id="chart" >
             <canvas id="yardChart"></canvas>
         </div>
