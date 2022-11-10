@@ -39,3 +39,50 @@ function setBackgroundColorComparison(team1,team2){
     }
 }
 
+function spread(team){
+    let start_spread = 0;
+
+
+    let selection = document.getElementById(team);
+
+    let team1 = document.getElementById('team1');
+    let team2 = document.getElementById('team2');
+
+    let win_per = document.getElementById('win_per_1');
+    let win_per_2 = document.getElementById('win_per_2');
+
+    let round_2_win_per = document.getElementById('round_2_win_percent_1');
+    let round_2_win_per_2 = document.getElementById('round_2_win_percent_2');
+
+    console.log(selection.innerHTML, team1.innerHTML,);
+
+    if (selection.innerHTML === team1.innerHTML){
+        start_spread = -3 ;
+
+    }
+    else if (selection.innerHTML === team2.innerHTML){
+        start_spread = 3;
+
+    }
+    else{
+        start_spread = 0;
+    }
+
+
+    document.write(start_spread);
+
+
+
+}
+
+function over_under(team){
+    let selection = document.getElementById(team);
+    console.log(selection.innerHTML);
+    document.write(selection.innerHTML);
+}
+
+function moneyLine(team){
+    let selection = document.getElementById(team);
+    console.log(selection.innerHTML);
+    document.write(selection.innerHTML);
+}

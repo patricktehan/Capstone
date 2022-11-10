@@ -4,6 +4,7 @@ include ('connection.php');
 
 global $conn;
 session_start();
+
 //team 1 statistics
 $team_name = '';
 $division = '';
@@ -112,17 +113,22 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                             echo "<option value = '$team_name'>$team_name</option>";
                         }
                         ?>
-                        <input type="submit" name="submit" value="submit" onclick="setBackgroundColorComparison()">
+                        <input type="submit" name="submit" value="submit" onclick="spread()">
                     </select>
                     </form>
                     <br>
                     <br>
-                    <br>
+                    <div id="'home">
+                        Home team
+                        <br>
+                        <br>
 <!--                    sets the selection from the dropdown to a variable-->
                     <?php
                     $selection_team1 = $_GET['team1'];
-                    echo $selection_team1;
+                    echo $selection_team1.'<br>';
                     ?>
+                    </div>
+
                 </tr>
             </table>
             <br>
@@ -144,12 +150,15 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                     </form>
                     <br>
                     <br>
-                    <br>
+                    <div id="away">
+                        Away Team
+                        <br>
+                        <br>
                     <?php
                     $selection_team2 = $_POST['team2'];
                     echo $selection_team2;
                     ?>
-
+                    </div>
                 </tr>
             </table>
         </div>
@@ -241,15 +250,22 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
         <div class="bet">
             <table>
                 <tr>
-
+                    <td>Team</td>
                     <td>Spread</td>
                     <td>Over/Under</td>
                     <td>Money Line</td>
                 </tr>
                 <tr>
-                    <td>Spread</td>
-                    <td>Over/Under</td>
-                    <td>Money Line</td>
+                    <td id ='team1'><?php echo $selection_team1?></td>
+                    <td><script>spread('team1');</script></td>
+                    <td><script>over_under('team1');</script></td>
+                    <td><script>moneyLine('team1');</script></td>
+                </tr>
+                <tr>
+                    <td id ='team2'><?php echo $selection_team2?></td>
+                    <td><script>spread('team2');</script></td>
+                    <td><script>over_under('team2');</script></td>
+                    <td><script>moneyLine('team2');</script></td>
                 </tr>
             </table>
         </div>
@@ -395,7 +411,6 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
             <canvas id="yardChart"></canvas>
         </div>
             <script>
-
                 let team1Pick = '<?php echo $selection_team1;?>' ;
                 let passYardOffense1 = document.getElementById('pass_yard_offense1');
                 let passYardDefense1 = document.getElementById('pass_yard_defense1');
@@ -433,7 +448,38 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                     config
                 );
             </script>
-
+    <div class="team1_algo_stats">
+        <div id = "wins_1"><?php echo $wins;?></div>
+        <div id = "losses_1"><?php echo $losses;?></div>
+        <div id = "games_1"><?php echo $games;?></div>
+        <div id = "win_per_1"><?php echo $win_per;?></div>
+        <div id = "round_1_adj_1"><?php echo $round_1_adj;?></div>
+        <div id = "round_1_win_percent_1"><?php echo $round_1_win_percent;?></div>
+        <div id = "round_2_adj_1"><?php echo $round_2_adj;?></div>
+        <div id = "round_2_win_percent_1"><?php echo $round_2_win_percent;?></div>
+        <div id = "rank_raw_1"><?php echo $rank_raw;?></div>
+        <div id = "rank_adj_1_1"><?php echo $rank_adj_1;?></div>
+        <div id = "rank_adj_2_1"><?php echo $rank_adj_2;?></div>
+        <div id = "raw_to_adj_change_1"><?php echo $raw_to_adj_change;?></div>
+        <div id = "rank_change_raw_to_adj_1"><?php echo $rank_change_raw_to_adj;?></div>
+        <div id = "sos_rank_1"><?php echo $sos_rank;?></div>
+    </div>
+        <div class="team2_algo_stats">
+            <div id = "wins_2"><?php echo $wins_2;?></div>
+            <div id = "losses_2"><?php echo $losses_2;?></div>
+            <div id = "games_2"><?php echo $games_2;?></div>
+            <div id = "win_per_2"><?php echo $win_per_2;?></div>
+            <div id = "round_1_adj_2"><?php echo $round_1_adj_2;?></div>
+            <div id = "round_1_win_percent_2"><?php echo $round_1_win_percent_2;?></div>
+            <div id = "round_2_adj_2"><?php echo $round_2_adj_2;?></div>
+            <div id = "round_2_win_percent_2"><?php echo $round_2_win_percent_2;?></div>
+            <div id = "rank_raw_2"><?php echo $rank_raw_2;?></div>
+            <div id = "rank_adj_1_2"><?php echo $rank_adj_1_2;?></div>
+            <div id = "rank_adj_2_2"><?php echo $rank_adj_2_2;?></div>
+            <div id = "raw_to_adj_change_2"><?php echo $raw_to_adj_change_2;?></div>
+            <div id = "rank_change_raw_to_adj_2"><?php echo $rank_change_raw_to_adj_2;?></div>
+            <div id = "sos_rank_2"><?php echo $sos_rank_2;?></div>
+        </div>
 
     </main>
 </div>
@@ -441,25 +487,6 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
     onPageLoad();
 </script>
 <footer>
-
-    <?php
-    echo $selection_team1.' ';
-    echo $wins.' ';
-    echo $losses.' ';
-    echo $games.' ';
-    echo $win_per.' ';
-    echo $round_1_adj.' ';
-    echo $round_1_win_percent.' ';
-    echo $round_2_adj.' ';
-    echo $round_2_win_percent.' ';
-    echo $rank_raw.' ';
-    echo $rank_adj_1.' ';
-    echo $rank_adj_2.' ';
-    echo $raw_to_adj_change.' ';
-    echo $rank_change_raw_to_adj.' ';
-    echo $sos_rank.' ';
-
-    ?>
 </footer>
 </body>
 </html>
