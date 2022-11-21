@@ -3,6 +3,7 @@
 include ('connection.php');
 
 global $conn;
+error_reporting(0);
 session_start();
 
 //team 1 statistics
