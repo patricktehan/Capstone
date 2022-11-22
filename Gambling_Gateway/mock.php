@@ -99,6 +99,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
 <h1><img src="img/gamblinggatewaylogo.png" alt="Gambling Gateway" height="200px" width ="250px"></h1>
 <div class="grid">
     <main>
+
         <p><img class ="nfl_logo" src="img/nfl.jpg" alt="NFL" ></p>
         <div id= "team1Pick" class="pick1">
             <table >
@@ -412,6 +413,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
         <div id="chart" >
             <canvas id="yardChart"></canvas>
         </div>
+
         <script>
             let team1Pick = '<?php echo $selection_team1;?>' ;
             let passYardOffense1 = document.getElementById('pass_yard_offense1');
@@ -449,6 +451,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 document.getElementById('yardChart'),
                 config
             );
+
         </script>
         <div class="team1_algo_stats">
             <div id = "wins_1"><?php echo $wins;?></div>
