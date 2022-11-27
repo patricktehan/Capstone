@@ -51,29 +51,66 @@ function spread(team){
     let win_per = document.getElementById('win_per_1');
     let win_per_2 = document.getElementById('win_per_2');
 
-    let round_2_win_per = document.getElementById('round_2_win_percent_1');
-    let round_2_win_per_2 = document.getElementById('round_2_win_percent_2');
 
-    console.log(selection.innerHTML, team1.innerHTML,);
+    let round_2_adj_1 = document.getElementById('round_2_adj_1');
+    let round_2_adj_2 = document.getElementById('round_2_adj_2');
 
-    if (selection.innerHTML === team1.innerHTML){
-        start_spread = -3 ;
+    //console.log(selection.innerHTML, team1.innerHTML);
+    console.log(team1.innerHTML);
+//take adj 2 win per and subtract team 1 - team 2. col 9
+    if (selection.innerHTML === team1.innerHTML) {
+        start_spread = round_2_adj_1 + round_2_adj_2;}
+        // if (round_2_adj_1 - round_2_adj_2 <= 0.049) {
+        //     start_spread = -3 }
+        //     else if (round_2_adj_1 - round_2_adj_2 >= 0.05){
+        //         start_spread = -3.5;}
+        //     }
 
-    }
-    else if (selection.innerHTML === team2.innerHTML){
-        start_spread = +3;
+        // else if (round_2_adj_1 - round_2_adj_2 >= 0.05) {
+        //     start_spread = -3.5;
+        // }
 
-    }
-    else{
+    //if (selection.innerHTML === team1.innerHTML);
+    //else if (selection.innerHTML === team2.innerHTML) {
+        //start_spread = 3;
+    //}
+    //else if (selection.innerHTML === team2.innerHTML);
+        else if (selection.innerHTML === team2.innerHTML){
+            if (round_2_adj_1 - round_2_adj_2 <= 0.049) {
+                start_spread = 3;
+        }
+                else if (round_2_adj_1 - round_2_adj_2 >= 0.05) {
+                    start_spread = -3.5;
+        } }
+
+    //}
+    else {
+
         start_spread = 0;
     }
+        //let new_spread = round_2_win_per.innerHTML - round_2_win_per_2.innerHTML;
+   // if (round_2_win_per - round_2_win_per_2 <= 0.049) {
+   //          start_spread = 3;
+   // }
+   // else if (round_2_win_per - round_2_win_per_2 >= 0.05) {
+   //          start_spread = 3.5;
+   //      }
+        //} else if (new_spread >= 0.1) {
+        //start_spread = -4;
+        //} else if (new_spread >= 0.15) {
+        //start_spread = -4.5;
+        //} else if (new_spread >= 0.2) {
+        //start_spread = -5;
+        //} //else start_spread = -3
+
+
 
 
     document.write(start_spread);
 
-
-
 }
+
+
 
 function over_under(team){
     let selection = document.getElementById(team);
