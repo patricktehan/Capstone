@@ -409,11 +409,11 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 </tr>
             </table>
         </div>
-
+        <p id="outChart">
         <div id="chart" >
             <canvas id="yardChart"></canvas>
         </div>
-
+        </p>
         <script>
             let team1Pick = '<?php echo $selection_team1;?>' ;
             let passYardOffense1 = document.getElementById('pass_yard_offense1');
