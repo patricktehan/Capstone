@@ -29,9 +29,9 @@ p{padding-bottom:11.7px;
 }
 .outChart{grid-column:3;grid-row:3;text-align:center;
 }
-.team1_algo_stats{
- display:none;
-}
-.team2_algo_stats{
- display:none;
-}
+/*.team1_algo_stats{*/
+/* display:none;*/
+/*}*/
+/*.team2_algo_stats{*/
+/* display:none;*/
+/*}*/

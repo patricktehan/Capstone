@@ -59,22 +59,8 @@ function spread(team){
     console.log(team1.innerHTML);
 //take adj 2 win per and subtract team 1 - team 2. col 9
     if (selection.innerHTML === team1.innerHTML) {
-        start_spread = round_2_adj_1 + round_2_adj_2;}
-        // if (round_2_adj_1 - round_2_adj_2 <= 0.049) {
-        //     start_spread = -3 }
-        //     else if (round_2_adj_1 - round_2_adj_2 >= 0.05){
-        //         start_spread = -3.5;}
-        //     }
+        start_spread = Math.round(round_2_adj_1 + round_2_adj_2).toFixed(2);}
 
-        // else if (round_2_adj_1 - round_2_adj_2 >= 0.05) {
-        //     start_spread = -3.5;
-        // }
-
-    //if (selection.innerHTML === team1.innerHTML);
-    //else if (selection.innerHTML === team2.innerHTML) {
-        //start_spread = 3;
-    //}
-    //else if (selection.innerHTML === team2.innerHTML);
         else if (selection.innerHTML === team2.innerHTML){
             if (round_2_adj_1 - round_2_adj_2 <= 0.049) {
                 start_spread = 3;
@@ -85,7 +71,6 @@ function spread(team){
 
     //}
     else {
-
         start_spread = 0;
     }
         //let new_spread = round_2_win_per.innerHTML - round_2_win_per_2.innerHTML;
@@ -107,6 +92,7 @@ function spread(team){
 
 
     document.write(start_spread);
+    document.close();
 
 }
 

@@ -28,20 +28,20 @@ $rush_yard_defense = '';
 $rush_yard_offense = '';
 
 //team 1 algorithm stats
-$wins = '';
-$losses = '';
-$games = '';
-$win_per = '';
-$round_1_adj = '';
-$round_1_win_percent = '';
-$round_2_adj = '';
-$round_2_win_percent = '';
-$rank_raw = '';
-$rank_adj_1 = '';
-$rank_adj_2 = '';
-$raw_to_adj_change = '';
-$rank_change_raw_to_adj = '';
-$sos_rank = '';
+$wins = 0;
+$losses = 0;
+$games = 0;
+$win_per = 0;
+$round_1_adj = 0;
+$round_1_win_percent = 0;
+$round_2_adj = 0;
+$round_2_win_percent = 0;
+$rank_raw = 0;
+$rank_adj_1 = 0;
+$rank_adj_2 = 0;
+$raw_to_adj_change = 0;
+$rank_change_raw_to_adj = 0;
+$sos_rank = 0;
 
 
 //team 2 statistics
@@ -66,24 +66,26 @@ $rush_yard_defense_2 = '';
 $rush_yard_offense_2 = '';
 
 //team 2 stats for Algorithms
-$wins_2 = '';
-$losses_2= '';
-$games_2 = '';
-$win_per_2 = '';
-$round_1_adj_2 = '';
-$round_1_win_percent_2 = '';
-$round_2_adj_2 = '';
-$round_2_win_percent_2 = '';
-$rank_raw_2 = '';
-$rank_adj_1_2 = '';
-$rank_adj_2_2 = '';
-$raw_to_adj_change_2 = '';
-$rank_change_raw_to_adj_2 = '';
-$sos_rank_2 = '';
+$wins_2 = 0;
+$losses_2= 0;
+$games_2 = 0;
+$win_per_2 = 0;
+$round_1_adj_2 = 0;
+$round_1_win_percent_2 = 0;
+$round_2_adj_2 = 0;
+$round_2_win_percent_2 = 0;
+$rank_raw_2 = 0;
+$rank_adj_1_2 = 0;
+$rank_adj_2_2 = 0;
+$raw_to_adj_change_2 = 0;
+$rank_change_raw_to_adj_2 = 0;
+$sos_rank_2 = 0;
 
 //query 1 for team one query2 for team 2 database
 $query = $conn->query("SELECT * FROM 2021NFL_stats");
 $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
+
+
 
 ?>
 <!DOCTYPE html>
@@ -259,7 +261,13 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 </tr>
                 <tr>
                     <td id ='team1'><?php echo $selection_team1?></td>
-                    <td><script>spread('team1');</script></td>
+                    <td><script>spread('team1');</script>
+                    <?php
+                        if($round_2_adj-$round_2_adj_2 >= 0.05){
+                            echo '-3.5';
+                        }
+                    ?>
+                    </td>
                     <td><script>over_under('team1');</script></td>
                     <td><script>moneyLine('team1');</script></td>
                 </tr>
@@ -460,7 +468,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
             <div id = "win_per_1"><?php echo $win_per;?></div>
             <div id = "round_1_adj_1"><?php echo $round_1_adj;?></div>
             <div id = "round_1_win_percent_1"><?php echo $round_1_win_percent;?></div>
-            <div id = "round_2_adj_1"><?php echo $round_2_adj;?></div>
+            <div id = "round_2_adj_1"><?php echo $round_2_adj;?>j</div>
             <div id = "round_2_win_percent_1"><?php echo $round_2_win_percent;?></div>
             <div id = "rank_raw_1"><?php echo $rank_raw;?></div>
             <div id = "rank_adj_1_1"><?php echo $rank_adj_1;?></div>
@@ -476,7 +484,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
             <div id = "win_per_2"><?php echo $win_per_2;?></div>
             <div id = "round_1_adj_2"><?php echo $round_1_adj_2;?></div>
             <div id = "round_1_win_percent_2"><?php echo $round_1_win_percent_2;?></div>
-            <div id = "round_2_adj_2"><?php echo $round_2_adj_2;?></div>
+            <div id = "round_2_adj_2"><?php echo $round_2_adj_2;?>j</div>
             <div id = "round_2_win_percent_2"><?php echo $round_2_win_percent_2;?></div>
             <div id = "rank_raw_2"><?php echo $rank_raw_2;?></div>
             <div id = "rank_adj_1_2"><?php echo $rank_adj_1_2;?></div>
@@ -485,7 +493,9 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
             <div id = "rank_change_raw_to_adj_2"><?php echo $rank_change_raw_to_adj_2;?></div>
             <div id = "sos_rank_2"><?php echo $sos_rank_2;?></div>
         </div>
-
+        <p>
+            <?php echo $round_2_adj_2 + $round_2_adj;?>
+        </p>
     </main>
 </div>
 <script>
