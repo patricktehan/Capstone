@@ -249,7 +249,38 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
             $sos_rank_2 = $row['SOS_Rank'];
         }
         ?>
-
+        <div class="team1_algo_stats">
+            <div id = "wins_1"><?php echo $wins;?></div>
+            <div id = "losses_1"><?php echo $losses;?></div>
+            <div id = "games_1"><?php echo $games;?></div>
+            <div id = "win_per_1"><?php echo $win_per;?></div>
+            <div id = "round_1_adj_1"><?php echo $round_1_adj;?></div>
+            <div id = "round_1_win_percent_1"><?php echo $round_1_win_percent;?></div>
+            <div id = "round_2_adj_1"><?php echo $round_2_adj;?>j</div>
+            <div id = "round_2_win_percent_1"><?php echo $round_2_win_percent;?></div>
+            <div id = "rank_raw_1"><?php echo $rank_raw;?></div>
+            <div id = "rank_adj_1_1"><?php echo $rank_adj_1;?></div>
+            <div id = "rank_adj_2_1"><?php echo $rank_adj_2;?></div>
+            <div id = "raw_to_adj_change_1"><?php echo $raw_to_adj_change;?></div>
+            <div id = "rank_change_raw_to_adj_1"><?php echo $rank_change_raw_to_adj;?></div>
+            <div id = "sos_rank_1"><?php echo $sos_rank;?></div>
+        </div>
+        <div class="team2_algo_stats">
+            <div id = "wins_2"><?php echo $wins_2;?></div>
+            <div id = "losses_2"><?php echo $losses_2;?></div>
+            <div id = "games_2"><?php echo $games_2;?></div>
+            <div id = "win_per_2"><?php echo $win_per_2;?></div>
+            <div id = "round_1_adj_2"><?php echo $round_1_adj_2;?></div>
+            <div id = "round_1_win_percent_2"><?php echo $round_1_win_percent_2;?></div>
+            <div id = "round_2_adj_2"><?php echo $round_2_adj_2;?>j</div>
+            <div id = "round_2_win_percent_2"><?php echo $round_2_win_percent_2;?></div>
+            <div id = "rank_raw_2"><?php echo $rank_raw_2;?></div>
+            <div id = "rank_adj_1_2"><?php echo $rank_adj_1_2;?></div>
+            <div id = "rank_adj_2_2"><?php echo $rank_adj_2_2;?></div>
+            <div id = "raw_to_adj_change_2"><?php echo $raw_to_adj_change_2;?></div>
+            <div id = "rank_change_raw_to_adj_2"><?php echo $rank_change_raw_to_adj_2;?></div>
+            <div id = "sos_rank_2"><?php echo $sos_rank_2;?></div>
+        </div>
 
         <div class="bet">
             <table>
@@ -263,7 +294,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                     <td id ='team1'><?php echo $selection_team1?></td>
                     <td><script>spread('team1');</script>
                     <?php
-                        if($round_2_adj-$round_2_adj_2 >= 0.05){
+                        if($round_2_adj - $round_2_adj_2 >= 0.05){
                             echo '-3.5';
                         }
                     ?>
@@ -461,41 +492,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
             );
 
         </script>
-        <div class="team1_algo_stats">
-            <div id = "wins_1"><?php echo $wins;?></div>
-            <div id = "losses_1"><?php echo $losses;?></div>
-            <div id = "games_1"><?php echo $games;?></div>
-            <div id = "win_per_1"><?php echo $win_per;?></div>
-            <div id = "round_1_adj_1"><?php echo $round_1_adj;?></div>
-            <div id = "round_1_win_percent_1"><?php echo $round_1_win_percent;?></div>
-            <div id = "round_2_adj_1"><?php echo $round_2_adj;?>j</div>
-            <div id = "round_2_win_percent_1"><?php echo $round_2_win_percent;?></div>
-            <div id = "rank_raw_1"><?php echo $rank_raw;?></div>
-            <div id = "rank_adj_1_1"><?php echo $rank_adj_1;?></div>
-            <div id = "rank_adj_2_1"><?php echo $rank_adj_2;?></div>
-            <div id = "raw_to_adj_change_1"><?php echo $raw_to_adj_change;?></div>
-            <div id = "rank_change_raw_to_adj_1"><?php echo $rank_change_raw_to_adj;?></div>
-            <div id = "sos_rank_1"><?php echo $sos_rank;?></div>
-        </div>
-        <div class="team2_algo_stats">
-            <div id = "wins_2"><?php echo $wins_2;?></div>
-            <div id = "losses_2"><?php echo $losses_2;?></div>
-            <div id = "games_2"><?php echo $games_2;?></div>
-            <div id = "win_per_2"><?php echo $win_per_2;?></div>
-            <div id = "round_1_adj_2"><?php echo $round_1_adj_2;?></div>
-            <div id = "round_1_win_percent_2"><?php echo $round_1_win_percent_2;?></div>
-            <div id = "round_2_adj_2"><?php echo $round_2_adj_2;?>j</div>
-            <div id = "round_2_win_percent_2"><?php echo $round_2_win_percent_2;?></div>
-            <div id = "rank_raw_2"><?php echo $rank_raw_2;?></div>
-            <div id = "rank_adj_1_2"><?php echo $rank_adj_1_2;?></div>
-            <div id = "rank_adj_2_2"><?php echo $rank_adj_2_2;?></div>
-            <div id = "raw_to_adj_change_2"><?php echo $raw_to_adj_change_2;?></div>
-            <div id = "rank_change_raw_to_adj_2"><?php echo $rank_change_raw_to_adj_2;?></div>
-            <div id = "sos_rank_2"><?php echo $sos_rank_2;?></div>
-        </div>
-        <p>
-            <?php echo $round_2_adj_2 + $round_2_adj;?>
-        </p>
+
     </main>
 </div>
 <script>
