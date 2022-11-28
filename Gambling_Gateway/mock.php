@@ -9,11 +9,11 @@ session_start();
 //team 1 statistics
 $team_name = '';
 $division = '';
-$division_score = '';
-$head_coach_ranking = '';
-$offense_ranting = '';
-$defense_ranting = '';
-$QB_ranting = '';
+$division_score = 0;
+$head_coach_ranking = 0;
+$offense_ranting = 0;
+$defense_ranting = 0;
+$QB_ranting = 0;
 $record_ats_away = '';
 $record_ats_away_fav = '';
 $ats_home = '';
@@ -47,11 +47,11 @@ $sos_rank = 0;
 //team 2 statistics
 $team_name_2 = '';
 $division_2 = '';
-$division_score_2 = '';
-$head_coach_ranking_2 = '';
-$offense_ranting_2 = '';
-$defense_ranting_2 = '';
-$QB_ranting_2 = '';
+$division_score_2 = 0;
+$head_coach_ranking_2 = 0;
+$offense_ranting_2 = 0;
+$defense_ranting_2 = 0;
+$QB_ranting_2 = 0;
 $record_ats_away_2 = '';
 $record_ats_away_fav_2 = '';
 $ats_home_2 = '';
@@ -329,30 +329,54 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                     //                        else if ($third_down_offense = $third_down_defense_2){
                     //                            $spread -= 0;
                     //                        }
-                        else if ($third_down_offense > $third_down_offense_2){
+                        if ($third_down_offense > $third_down_offense_2){
                             $spread -= .5;
                         }
                         else if ($third_down_offense < $third_down_offense_2){
                             $spread += .5;
                         }
 
-                        else if ($third_down_defense < $third_down_defense_2){
+                        if ($third_down_defense < $third_down_defense_2){
                             $spread -= .5;
                         }
                         else if ($third_down_defense > $third_down_defense_2){
                             $spread += .5;
                         }
-                        else if ($pass_yard_defense < $pass_yard_offense_2){
+
+                        if ($pass_yard_defense < $pass_yard_offense_2){
                             $spread -= .5;
                         }
                         else if ($pass_yard_defense > $pass_yard_offense_2){
                             $spread += .5;
                         }
+                        if ($pass_yard_offense > $pass_yard_offense_2){
+                            $spread -= .5;
+                        }
+                        else if ($pass_yard_offense < $pass_yard_offense_2){
+                            $spread += .5;
+                        }
+                        if ($head_coach_ranking > $head_coach_ranking_2){
+                            $spread -= .5;
+                        }
+                        else if ($head_coach_ranking < $head_coach_ranking_2){
+                            $spread += .5;
+                        }
+                        if ($QB_ranting > $QB_ranting_2){
+                            $spread -= .5;
+                        }
+                        else if ($QB_ranting < $QB_ranting_2){
+                            $spread += .5;
+                        }
 
 
+                        if ($spread > 0){
+                            echo "+ ".$spread;
+                        }
+                        else{
+                            echo $spread;
+                        }
 
 
-                    echo $spread
                     ?>
                     </td>
                     <td></td>
@@ -360,7 +384,16 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 </tr>
                 <tr>
                     <td id ='team2'><?php echo $selection_team2?></td>
-                    <td><?php echo '+ '.$spread * -1 ?></td>
+                    <td><?php
+                        $spread *= -1;
+                         if ($spread > 0){
+                             echo "+ ".$spread;
+                         }
+                         else{
+                             echo $spread;
+                         }
+                        ?>
+                    </td>
                     <td><script>over_under('team2');</script></td>
                     <td><script>moneyLine('team2');</script></td>
                 </tr>
