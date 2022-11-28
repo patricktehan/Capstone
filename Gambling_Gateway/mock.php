@@ -292,19 +292,27 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 </tr>
                 <tr>
                     <td id ='team1'><?php echo $selection_team1?></td>
-                    <td><script>spread('team1');</script>
+                    <td>
                     <?php
-                        if($round_2_adj - $round_2_adj_2 >= 0.05){
-                            echo '-3.5';
+                        $spread = 0;
+                        if($round_2_adj - $round_2_adj_2 >= 0.05 and $round_2_adj - $round_2_adj_2 <= 0.09){
+                            echo $spread -= 3.5;
                         }
+                        else if ($round_2_adj - $round_2_adj_2 >= 0.1 and $round_2_adj - $round_2_adj_2 <= 0.149 ){
+                            echo $spread -= 4;
+                        }
+//                        else if($round_2_adj - $round_2_adj_2 >= 1.5){
+//
+//                        }
+
                     ?>
                     </td>
-                    <td><script>over_under('team1');</script></td>
-                    <td><script>moneyLine('team1');</script></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td id ='team2'><?php echo $selection_team2?></td>
-                    <td><script>spread('team2');</script></td>
+                    <td><?php echo '+ '.$spread * -1 ?></td>
                     <td><script>over_under('team2');</script></td>
                     <td><script>moneyLine('team2');</script></td>
                 </tr>
