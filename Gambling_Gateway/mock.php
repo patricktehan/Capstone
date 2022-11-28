@@ -332,7 +332,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                     //                        else if ($third_down_offense = $third_down_defense_2){
                     //                            $spread -= 0;
                     //                        }
-                        if ($third_down_offense > $third_down_offense_2){
+                        else if ($third_down_offense > $third_down_offense_2){
                             $spread -= .5;
                         }
                         else if ($third_down_offense < $third_down_offense_2){
