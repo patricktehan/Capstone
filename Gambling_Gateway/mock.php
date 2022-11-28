@@ -295,16 +295,38 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                     <td>
                     <?php
                         $spread = 0;
-                        if($round_2_adj - $round_2_adj_2 >= 0.05 and $round_2_adj - $round_2_adj_2 <= 0.09){
-                            echo $spread -= 3.5;
+                        if($round_2_adj - $round_2_adj_2 <= 0.049){
+                             $spread -= 3;
+                        }
+                        else if($round_2_adj - $round_2_adj_2 >= 0.05 and $round_2_adj - $round_2_adj_2 <= 0.09){
+                             $spread -= 3.5;
                         }
                         else if ($round_2_adj - $round_2_adj_2 >= 0.1 and $round_2_adj - $round_2_adj_2 <= 0.149 ){
-                            echo $spread -= 4;
+                             $spread -= 4;
                         }
-//                        else if($round_2_adj - $round_2_adj_2 >= 1.5){
-//
-//                        }
+                        else{
+                            $spread -= 4.5;
 
+                        }
+//                        3rd down calcs
+                        if ($third_down_offense > $third_down_defense_2){
+                            $spread -= .5;
+                        }
+
+                    //                        else if ($third_down_offense < $third_down_defense_2){
+                    //                            $spread += .5;
+                    //                        }
+                    //                        else if ($third_down_offense = $third_down_defense_2){
+                    //                            $spread -= 0;
+                    //                        }
+                        if ($third_down_defense < $third_down_offense_2){
+                            $spread -= .5;
+                        }
+                        else if ($third_down_defense > $third_down_offense_2){
+                            $spread += .5;
+                        }
+
+                    echo $spread
                     ?>
                     </td>
                     <td></td>

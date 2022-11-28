@@ -39,62 +39,62 @@ function setBackgroundColorComparison(team1,team2){
     }
 }
 
-function spread(team){
-    let start_spread = 0;
-
-
-    let selection = document.getElementById(team);
-
-    let team1 = document.getElementById('team1');
-    let team2 = document.getElementById('team2');
-
-    let win_per = document.getElementById('win_per_1');
-    let win_per_2 = document.getElementById('win_per_2');
-
-
-    let round_2_adj_1 = document.getElementById('round_2_adj_1');
-    let round_2_adj_2 = document.getElementById('round_2_adj_2');
-
-    //console.log(selection.innerHTML, team1.innerHTML);
-    console.log(team1.innerHTML);
-//take adj 2 win per and subtract team 1 - team 2. col 9
-    if (selection.innerHTML === team1.innerHTML) {
-        start_spread = Math.round(round_2_adj_1 + round_2_adj_2).toFixed(2);}
-
-        else if (selection.innerHTML === team2.innerHTML){
-            if (round_2_adj_1 - round_2_adj_2 <= 0.049) {
-                start_spread = 3;
-        }
-                else if (round_2_adj_1 - round_2_adj_2 >= 0.05) {
-                    start_spread = -3.5;
-        } }
-
-    //}
-    else {
-        start_spread = 0;
-    }
-        //let new_spread = round_2_win_per.innerHTML - round_2_win_per_2.innerHTML;
-   // if (round_2_win_per - round_2_win_per_2 <= 0.049) {
-   //          start_spread = 3;
-   // }
-   // else if (round_2_win_per - round_2_win_per_2 >= 0.05) {
-   //          start_spread = 3.5;
-   //      }
-        //} else if (new_spread >= 0.1) {
-        //start_spread = -4;
-        //} else if (new_spread >= 0.15) {
-        //start_spread = -4.5;
-        //} else if (new_spread >= 0.2) {
-        //start_spread = -5;
-        //} //else start_spread = -3
-
-
-
-
-    document.write(start_spread);
-    document.close();
-
-}
+// function spread(team){
+//     let start_spread = 0;
+//
+//
+//     let selection = document.getElementById(team);
+//
+//     let team1 = document.getElementById('team1');
+//     let team2 = document.getElementById('team2');
+//
+//     let win_per = document.getElementById('win_per_1');
+//     let win_per_2 = document.getElementById('win_per_2');
+//
+//
+//     let round_2_adj_1 = document.getElementById('round_2_adj_1');
+//     let round_2_adj_2 = document.getElementById('round_2_adj_2');
+//
+//     //console.log(selection.innerHTML, team1.innerHTML);
+//     console.log(team1.innerHTML);
+// //take adj 2 win per and subtract team 1 - team 2. col 9
+//     if (selection.innerHTML === team1.innerHTML) {
+//         start_spread = Math.round(round_2_adj_1 + round_2_adj_2).toFixed(2);}
+//
+//         else if (selection.innerHTML === team2.innerHTML){
+//             if (round_2_adj_1 - round_2_adj_2 <= 0.049) {
+//                 start_spread = 3;
+//         }
+//                 else if (round_2_adj_1 - round_2_adj_2 >= 0.05) {
+//                     start_spread = -3.5;
+//         } }
+//
+//     //}
+//     else {
+//         start_spread = 0;
+//     }
+//         //let new_spread = round_2_win_per.innerHTML - round_2_win_per_2.innerHTML;
+//    // if (round_2_win_per - round_2_win_per_2 <= 0.049) {
+//    //          start_spread = 3;
+//    // }
+//    // else if (round_2_win_per - round_2_win_per_2 >= 0.05) {
+//    //          start_spread = 3.5;
+//    //      }
+//         //} else if (new_spread >= 0.1) {
+//         //start_spread = -4;
+//         //} else if (new_spread >= 0.15) {
+//         //start_spread = -4.5;
+//         //} else if (new_spread >= 0.2) {
+//         //start_spread = -5;
+//         //} //else start_spread = -3
+//
+//
+//
+//
+//     document.write(start_spread);
+//     document.close();
+//
+// }
 
 
 
