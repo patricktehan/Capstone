@@ -294,24 +294,37 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                     <td id ='team1'><?php echo $selection_team1?></td>
                     <td>
                     <?php
-                        $spread = 0;
-                        if($round_2_adj - $round_2_adj_2 <= 0.049){
-                             $spread -= 3;
+                        $spread = -3;
+                        if($round_2_adj - $round_2_adj_2 <= 0.049 and $round_2_adj - $round_2_adj_2 >= -0.049){
+                             $spread = -3;
                         }
                         else if($round_2_adj - $round_2_adj_2 >= 0.05 and $round_2_adj - $round_2_adj_2 <= 0.09){
-                             $spread -= 3.5;
+                             $spread -= .5;
                         }
                         else if ($round_2_adj - $round_2_adj_2 >= 0.1 and $round_2_adj - $round_2_adj_2 <= 0.149 ){
-                             $spread -= 4;
+                             $spread -= 1;
                         }
-                        else{
-                            $spread -= 4.5;
+                        else if($round_2_adj - $round_2_adj_2 >= 0.15){
+                            $spread -= 1.5;
 
                         }
-//                        3rd down calcs
-                        if ($third_down_offense > $third_down_defense_2){
-                            $spread -= .5;
+
+                        else if($round_2_adj - $round_2_adj_2 <= -0.05 and $round_2_adj - $round_2_adj_2 >= -0.09){
+                            $spread += .5;
                         }
+                        else if ($round_2_adj - $round_2_adj_2 >= -0.1 and $round_2_adj - $round_2_adj_2 <= -0.149 ){
+                            $spread += 1;
+                        }
+                        else if ($round_2_adj - $round_2_adj_2 >= -0.15){
+                            $spread += 1.5;
+
+                        }
+
+//                        3rd down calcs
+
+//                        if ($third_down_offense > $third_down_defense_2){
+//                            $spread -= .5;
+//                        }
 
                     //                        else if ($third_down_offense < $third_down_defense_2){
                     //                            $spread += .5;
@@ -319,12 +332,22 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                     //                        else if ($third_down_offense = $third_down_defense_2){
                     //                            $spread -= 0;
                     //                        }
-                        if ($third_down_defense < $third_down_offense_2){
+                        if ($third_down_offense > $third_down_offense_2){
                             $spread -= .5;
                         }
-                        else if ($third_down_defense > $third_down_offense_2){
+                        else if ($third_down_offense < $third_down_offense_2){
                             $spread += .5;
                         }
+
+                        if ($third_down_defense < $third_down_defense_2){
+                            $spread -= .5;
+                        }
+                        else if ($third_down_defense > $third_down_defense_2){
+                            $spread += .5;
+                        }
+
+
+
 
                     echo $spread
                     ?>
