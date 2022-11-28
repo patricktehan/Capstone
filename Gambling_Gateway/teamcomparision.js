@@ -30,12 +30,12 @@ function setBackgroundColorComparison(team1,team2){
         division2.style.color = "black"
     }
     else if (division1.innerHTML > division2.innerHTML){
-        division1.style.backgroundColor = "green";
-        division2.style.backgroundColor = "red";
+        division1.style.backgroundColor = "#146b1d";
+        division2.style.backgroundColor = "#b81911";
     }
     else if (division1.innerHTML < division2.innerHTML){
-        division1.style.backgroundColor = "red";
-        division2.style.backgroundColor = "green";
+        division1.style.backgroundColor = "#b81911";
+        division2.style.backgroundColor = "#146b1d";
     }
 }
 // This function is for the defense stats where the lower number is better
@@ -51,12 +51,12 @@ function setBackgroundColorComparison2(team1,team2){
         division2.style.color = "black"
     }
     else if (division1.innerHTML < division2.innerHTML){
-        division1.style.backgroundColor = "green";
-        division2.style.backgroundColor = "red";
+        division1.style.backgroundColor = "#146b1d";
+        division2.style.backgroundColor = "#b81911";
     }
     else if (division1.innerHTML > division2.innerHTML){
-        division1.style.backgroundColor = "red";
-        division2.style.backgroundColor = "green";
+        division1.style.backgroundColor = "#b81911";
+        division2.style.backgroundColor = "#146b1d";
     }
 }
 
