@@ -20,12 +20,12 @@ $ats_home = '';
 $ats_home_underdog = '';
 $ats_away_underdog = '';
 $ats_home_fav = '';
-$third_down_offense = '';
-$third_down_defense = '';
-$pass_yard_offense = '';
-$pass_yard_defense = '';
-$rush_yard_defense = '';
-$rush_yard_offense = '';
+$third_down_offense = 0;
+$third_down_defense = 0;
+$pass_yard_offense = 0;
+$pass_yard_defense = 0;
+$rush_yard_defense = 0;
+$rush_yard_offense = 0;
 
 //team 1 algorithm stats
 $wins = 0;
@@ -58,12 +58,12 @@ $ats_home_2 = '';
 $ats_home_underdog_2 = '';
 $ats_away_underdog_2 = '';
 $ats_home_fav_2 = '';
-$third_down_offense_2 = '';
-$third_down_defense_2 = '';
-$pass_yard_offense_2 = '';
-$pass_yard_defense_2 = '';
-$rush_yard_defense_2 = '';
-$rush_yard_offense_2 = '';
+$third_down_offense_2 = 0;
+$third_down_defense_2 = 0;
+$pass_yard_offense_2 = 0;
+$pass_yard_defense_2 = 0;
+$rush_yard_defense_2 = 0;
+$rush_yard_offense_2 = 0;
 
 //team 2 stats for Algorithms
 $wins_2 = 0;
@@ -306,9 +306,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                         }
                         else if($round_2_adj - $round_2_adj_2 >= 0.15){
                             $spread -= 1.5;
-
                         }
-
                         else if($round_2_adj - $round_2_adj_2 <= -0.05 and $round_2_adj - $round_2_adj_2 >= -0.09){
                             $spread += .5;
                         }
@@ -317,7 +315,6 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                         }
                         else if ($round_2_adj - $round_2_adj_2 >= -0.15){
                             $spread += 1.5;
-
                         }
 
 //                        3rd down calcs
@@ -339,7 +336,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                             $spread += .5;
                         }
 
-                        if ($third_down_defense < $third_down_defense_2){
+                        else if ($third_down_defense < $third_down_defense_2){
                             $spread -= .5;
                         }
                         else if ($third_down_defense > $third_down_defense_2){
