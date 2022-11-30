@@ -451,7 +451,24 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                             else if ($spread <= -6){
                                 $money_line = 200;
                                 echo "- ".$money_line;
-                        }
+                            }
+                            else if ($spread >= -2.9 and $spread <= -0.01){
+                                $money_line = 125;
+                                echo "- ".$money_line;
+                            }
+                            if ($spread >= 3 and $spread <= 5.9){
+                                $money_line = 150;
+                                echo "+ ".$money_line;
+                            }
+                            else if ($spread >= 6){
+                                $money_line = 200;
+                                echo "+ ".$money_line;
+                            }
+                            else if ($spread <= 2.9 and $spread >= 0){
+                                $money_line = 125;
+                                echo "+ ".$money_line;
+                            }
+
 
 
                         ?>
@@ -476,7 +493,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                             echo $over_under;
                         ?>
                     </td>
-                    <td><?php echo '+ '.$money_line ?></td>
+                    <td><?php echo $money_line ?></td>
                 </tr>
             </table>
         </div>
