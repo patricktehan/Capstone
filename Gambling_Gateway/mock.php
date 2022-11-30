@@ -372,23 +372,59 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                             $spread += .5;
                         }
                         if ($QB_ranting > $QB_ranting_2){
-                            $spread -= .5;
+                            $spread -= 3;
                         }
-                        else if ($QB_ranting - $QB_ranting_2 >= 2){
+
+//                        else if ($QB_ranting - $QB_ranting_2 >= 2){
+//                            $spread -= 1.5;
+//                        }
+//                        else if ($QB_ranting - $QB_ranting_2 >= 3){
+//                            $spread -= 2.5;
+//                        }
+//                        else if ($QB_ranting < $QB_ranting_2){
+//                            $spread += 3;
+//                        }
+                        else if ($QB_ranting == $QB_ranting_2){
+                            $spread += 0;
+                        }
+//                        else if ($QB_ranting - $QB_ranting_2 <= -2){
+//                            $spread += 1.5;
+//                        }
+//                        else if ($QB_ranting - $QB_ranting_2 >= 3){
+//                            $spread += 2.5;
+//                        }
+
+                        if ($defense_ranting > $defense_ranting_2){
                             $spread -= 1;
                         }
-                        else if ($QB_ranting - $QB_ranting_2 >= 3){
-                            $spread -= 1.5;
-                        }
-                        else if ($QB_ranting < $QB_ranting_2){
-                            $spread += .5;
-                        }
-                        else if ($QB_ranting - $QB_ranting_2 <= 2){
+                        else if ($defense_ranting < $defense_ranting_2){
                             $spread += 1;
                         }
-                        else if ($QB_ranting - $QB_ranting_2 <= 3){
+                        else if ($defense_ranting == $defense_ranting_2){
+                            $spread += 0;
+                        }
+
+                        if ($offense_ranting > $offense_ranting_2){
+                            $spread -= 1.5;
+                        }
+                        else if ($offense_ranting < $offense_ranting_2){
                             $spread += 1.5;
                         }
+                        else if ($offense_ranting == $offense_ranting_2){
+                            $spread += 0;
+                        }
+
+                        if ($head_coach_ranking > $head_coach_ranking_2){
+                            $spread -= 0.5;
+                        }
+                        else if ($head_coach_ranking < $head_coach_ranking_2){
+                            $spread += 0.5;
+                        }
+                        else if ($head_coach_ranking == $head_coach_ranking_2){
+                            $spread += 0;
+                        }
+
+
 
 
 
@@ -407,7 +443,20 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                         echo $over_under;
                         ?>
                     </td>
-                    <td>MONEY LINE HERE!!</td>
+                    <td><?php
+                            if ($spread <= -3 and $spread >= -5.9){
+                                $money_line = 150;
+                                echo "- ".$money_line;
+                            }
+                            else if ($spread <= -6){
+                                $money_line = 200;
+                                echo "- ".$money_line;
+                        }
+
+
+                        ?>
+
+                    </td>
                 </tr>
                 <tr>
                     <td id ='team2'><?php echo $selection_team2?></td>
@@ -422,8 +471,12 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                          }
                         ?>
                     </td>
-                    <td><script>over_under('team2');</script>
-                    <td></td>
+                    <td>
+                        <?php
+                            echo $over_under;
+                        ?>
+                    </td>
+                    <td><?php echo '+ '.$money_line ?></td>
                 </tr>
             </table>
         </div>
