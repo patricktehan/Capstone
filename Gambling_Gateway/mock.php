@@ -407,7 +407,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                         echo $over_under;
                         ?>
                     </td>
-                    <td>MONEY LINE HERE!!!</td>
+                    <td>MONEY LINE HERE!!</td>
                 </tr>
                 <tr>
                     <td id ='team2'><?php echo $selection_team2?></td>
