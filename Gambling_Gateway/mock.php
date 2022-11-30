@@ -81,6 +81,13 @@ $raw_to_adj_change_2 = 0;
 $rank_change_raw_to_adj_2 = 0;
 $sos_rank_2 = 0;
 
+//team average points
+$team_average = 0;
+$team_average2 = 0;
+
+
+
+
 //query 1 for team one query2 for team 2 database
 $query = $conn->query("SELECT * FROM 2021NFL_stats");
 $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
@@ -188,6 +195,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
             $pass_yard_defense = $row['pass_yard_defense'];
             $rush_yard_defense = $row['rush_yard_defense'];
             $rush_yard_offense = $row['rush_yard_offense'];
+            $team_average = $row['points_avg'];
         }
         //gathering every statistic from the database based on the team2 selection and setting each value to a variable
         $team_query_2 = $conn->query("SELECT * FROM 2021NFL_stats where Team_name = '$selection_team2'");
@@ -210,6 +218,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
             $pass_yard_defense_2 = $row['pass_yard_defense'];
             $rush_yard_defense_2 = $row['rush_yard_defense'];
             $rush_yard_offense_2 = $row['rush_yard_offense'];
+            $team_average2 = $row['points_avg'];
         }
         // Gathering algorithm data and setting it to usable variables based off team 1 selection
         $team_algo_query = $conn->query("SELECT * FROM table_alg_test2 where Team = '$selection_team1'");
@@ -293,6 +302,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 <tr>
                     <td id ='team1'><?php echo $selection_team1?></td>
                     <td>
+<!--                        spread ALGO -->
                     <?php
                         $spread = -3;
                         if($round_2_adj - $round_2_adj_2 <= 0.049 and $round_2_adj - $round_2_adj_2 >= -0.049){
@@ -316,19 +326,19 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                         else if ($round_2_adj - $round_2_adj_2 >= -0.15){
                             $spread += 1.5;
                         }
+                        if ($rank_adj_2 > $rank_adj_2_2){
+                            $spread -= 1;
+                        }
+                        else if ($rank_adj_2 - $rank_adj_2_2 >= 5){
+                            $spread -= 1.5;
+                        }
+                        else if ($rank_adj_2 - $rank_adj_2_2 >= 10){
+                            $spread -= 2;
+                        }
+                        else if ($rank_adj_2 < $rank_adj_2_2){
+                            $spread += 1;
+                        }
 
-//                        3rd down calcs
-
-//                        if ($third_down_offense > $third_down_defense_2){
-//                            $spread -= .5;
-//                        }
-
-                    //                        else if ($third_down_offense < $third_down_defense_2){
-                    //                            $spread += .5;
-                    //                        }
-                    //                        else if ($third_down_offense = $third_down_defense_2){
-                    //                            $spread -= 0;
-                    //                        }
                         if ($third_down_offense > $third_down_offense_2){
                             $spread -= .5;
                         }
@@ -364,9 +374,22 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                         if ($QB_ranting > $QB_ranting_2){
                             $spread -= .5;
                         }
+                        else if ($QB_ranting - $QB_ranting_2 >= 2){
+                            $spread -= 1;
+                        }
+                        else if ($QB_ranting - $QB_ranting_2 >= 3){
+                            $spread -= 1.5;
+                        }
                         else if ($QB_ranting < $QB_ranting_2){
                             $spread += .5;
                         }
+                        else if ($QB_ranting - $QB_ranting_2 <= 2){
+                            $spread += 1;
+                        }
+                        else if ($QB_ranting - $QB_ranting_2 <= 3){
+                            $spread += 1.5;
+                        }
+
 
 
                         if ($spread > 0){
@@ -379,14 +402,19 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
 
                     ?>
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td><?php
+                        $over_under = $team_average + $team_average2;
+                        echo $over_under;
+                        ?>
+                    </td>
+                    <td>MONEY LINE HERE!!!</td>
                 </tr>
                 <tr>
                     <td id ='team2'><?php echo $selection_team2?></td>
-                    <td><?php
+                    <td>
+                        <?php
                         $spread *= -1;
-                         if ($spread > 0){
+                        if ($spread > 0){
                              echo "+ ".$spread;
                          }
                          else{
@@ -394,8 +422,8 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                          }
                         ?>
                     </td>
-                    <td><script>over_under('team2');</script></td>
-                    <td><script>moneyLine('team2');</script></td>
+                    <td><script>over_under('team2');</script>
+                    <td></td>
                 </tr>
             </table>
         </div>
