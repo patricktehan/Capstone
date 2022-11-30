@@ -44,9 +44,6 @@ function setBackgroundColorComparison2(team1,team2){
     let division2 = document.getElementById(team2);
     console.log(division1.innerHTML,division1.innerHTML);
 
-    // if ($spread.innerHTML >= 0.5){
-    //     $spread.style.backgroundColor = "#b81911";
-    // }
 
     if (division1.innerHTML === division2.innerHTML){
         division1.style.backgroundColor = "yellow";
