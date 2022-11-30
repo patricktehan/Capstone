@@ -375,7 +375,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                             $spread -= 3;
                         }
 
-//                        else if ($QB_ranting - $QB_ranting_2 >= 2){
+//                        else if ($QB_ranting - $QB_ranting_ >= 2){
 //                            $spread -= 1.5;
 //                        }
 //                        else if ($QB_ranting - $QB_ranting_2 >= 3){
