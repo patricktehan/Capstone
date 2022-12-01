@@ -16,7 +16,7 @@ function onPageLoad(){
     setBackgroundColorComparison2("pass_yard_defense1","pass_yard_defense2");
     setBackgroundColorComparison2("rush_yard_defense1","rush_yard_defense2");
     setBackgroundColorComparison("rush_yard_offense1","rush_yard_offense2");
-    setBackgroundColorComparison2('spread',"spread2");
+    // setBackgroundColorComparison('spread',"spread2");
 
 }
 
@@ -62,6 +62,7 @@ function setBackgroundColorComparison2(team1,team2){
         division2.style.backgroundColor = "#146b1d";
     }
 }
+
 
 // function spread(team){
 //     let start_spread = 0;

@@ -407,9 +407,8 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                         else{
                             echo $spread;
                         }
-
-
                     ?>
+
                     </td>
                     <td><?php
                         $over_under = $team_average + $team_average2;
@@ -475,6 +474,19 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                         }
                          ?></td>
                 </tr>
+                <script>
+                    let team1 = document.getElementById('team1');
+                    let team1position = team1.innerHTML;
+                    let spread = '<?php echo $spread?>';
+                    console.log(team1position.innerHTML);
+
+                    if (spread >= 0){
+                        team1position.style.backgroundColor = "#146b1d";
+                    }
+                    else {
+                        team1position.style.backgroundColor= "#b81911";
+                    }
+                </script>
             </table>
         </div>
         <div class="stat_description">
