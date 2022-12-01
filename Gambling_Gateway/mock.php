@@ -85,13 +85,9 @@ $sos_rank_2 = 0;
 $team_average = 0;
 $team_average2 = 0;
 
-
-
-
 //query 1 for team one query2 for team 2 database
 $query = $conn->query("SELECT * FROM 2021NFL_stats");
 $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
-
 
 
 ?>
@@ -301,7 +297,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 </tr>
                 <tr>
                     <td id ='team1'><?php echo $selection_team1?></td>
-                    <td>
+                    <td id="spread">
 <!--                        spread ALGO -->
                     <?php
                         $spread = -3;
@@ -374,26 +370,9 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                         if ($QB_ranting > $QB_ranting_2){
                             $spread -= 3;
                         }
-
-//                        else if ($QB_ranting - $QB_ranting_ >= 2){
-//                            $spread -= 1.5;
-//                        }
-//                        else if ($QB_ranting - $QB_ranting_2 >= 3){
-//                            $spread -= 2.5;
-//                        }
-//                        else if ($QB_ranting < $QB_ranting_2){
-//                            $spread += 3;
-//                        }
                         else if ($QB_ranting == $QB_ranting_2){
                             $spread += 0;
                         }
-//                        else if ($QB_ranting - $QB_ranting_2 <= -2){
-//                            $spread += 1.5;
-//                        }
-//                        else if ($QB_ranting - $QB_ranting_2 >= 3){
-//                            $spread += 2.5;
-//                        }
-
                         if ($defense_ranting > $defense_ranting_2){
                             $spread -= 1;
                         }
@@ -423,10 +402,6 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                         else if ($head_coach_ranking == $head_coach_ranking_2){
                             $spread += 0;
                         }
-
-
-
-
 
                         if ($spread > 0){
                             echo "+ ".$spread;
@@ -477,7 +452,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 </tr>
                 <tr>
                     <td id ='team2'><?php echo $selection_team2?></td>
-                    <td>
+                    <td id="spread2">
                         <?php
                         $spread *= -1;
                         if ($spread > 0){
@@ -493,7 +468,14 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                             echo $over_under;
                         ?>
                     </td>
-                    <td><?php echo $money_line ?></td>
+                    <td><?php
+                        if ($spread > 0){
+                            echo "+ ". $money_line;
+                        }
+                        else{
+                            echo "- ".$money_line;
+                        }
+                         ?></td>
                 </tr>
             </table>
         </div>
