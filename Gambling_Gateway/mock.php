@@ -296,7 +296,9 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                     <td>Money Line</td>
                 </tr>
                 <tr>
-                    <td id ='team1'><?php echo $selection_team1?></td>
+                    <td id ='team1'>
+                        <?php echo $selection_team1?>
+                    </td>
                     <td id="spread">
 <!--                        spread ALGO -->
                     <?php
@@ -408,14 +410,15 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                             echo $spread;
                         }
                     ?>
-
                     </td>
-                    <td><?php
+                    <td>
+                        <?php
                         $over_under = $team_average + $team_average2;
                         echo $over_under;
                         ?>
                     </td>
-                    <td><?php
+                    <td>
+                        <?php
                             if ($spread <= -3 and $spread >= -5.9){
                                 $money_line = 150;
                                 echo "- ".$money_line;
@@ -440,15 +443,13 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                                 $money_line = 125;
                                 echo "+ ".$money_line;
                             }
-
-
-
                         ?>
-
                     </td>
                 </tr>
                 <tr>
-                    <td id ='team2'><?php echo $selection_team2?></td>
+                    <td id ='team2'>
+                        <?php echo $selection_team2?>
+                    </td>
                     <td id="spread2">
                         <?php
                         $spread *= -1;
@@ -465,26 +466,30 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                             echo $over_under;
                         ?>
                     </td>
-                    <td><?php
+                    <td>
+                        <?php
                         if ($spread > 0){
                             echo "+ ". $money_line;
                         }
                         else{
                             echo "- ".$money_line;
                         }
-                         ?></td>
+                         ?>
+                    </td>
                 </tr>
                 <script>
+//                    this script is for determining the side to bet on by setting a background color for the winning side on the
                     let team1 = document.getElementById('team1');
-                    let team1position = team1.innerHTML;
+                    let team2 = document.getElementById('team2');
                     let spread = '<?php echo $spread?>';
-                    console.log(team1position.innerHTML);
 
-                    if (spread >= 0){
-                        team1position.style.backgroundColor = "#146b1d";
+                    if (spread < 0){
+                        team1.style.backgroundColor = "#146b1d";
+                        team2.style.backgroundColor = "#b81911";
                     }
-                    else {
-                        team1position.style.backgroundColor= "#b81911";
+                    else if (spread > 0){
+                        team1.style.backgroundColor= "#b81911";
+                        team2.style.backgroundColor = "#146b1d";
                     }
                 </script>
             </table>
@@ -669,9 +674,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                 document.getElementById('yardChart'),
                 config
             );
-
         </script>
-
     </main>
 </div>
 <script>
