@@ -367,8 +367,14 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                         else if ($head_coach_ranking < $head_coach_ranking_2){
                             $spread += .5;
                         }
+                        else if ($head_coach_ranking == $head_coach_ranking_2){
+                            $spread += 0;
+                        }
                         if ($QB_ranting > $QB_ranting_2){
                             $spread -= 3;
+                        }
+                        else if ($QB_ranting < $QB_ranting_2){
+                            $spread += 3;
                         }
                         else if ($QB_ranting == $QB_ranting_2){
                             $spread += 0;
@@ -393,15 +399,7 @@ $query2 = $conn->query("SELECT * FROM 2021NFL_stats");
                             $spread += 0;
                         }
 
-                        if ($head_coach_ranking > $head_coach_ranking_2){
-                            $spread -= 0.5;
-                        }
-                        else if ($head_coach_ranking < $head_coach_ranking_2){
-                            $spread += 0.5;
-                        }
-                        else if ($head_coach_ranking == $head_coach_ranking_2){
-                            $spread += 0;
-                        }
+
 
                         if ($spread > 0){
                             echo "+ ".$spread;
